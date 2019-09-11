@@ -631,7 +631,7 @@
                                 <a class="first__img" href="single-product.html"><img src="<?= base_url() ?>assets/images/books/1.jpg" alt="product image"></a>
                                 <a class="second__img animation1" href="single-product.html"><img src="<?= base_url() ?>assets/images/books/6.jpg" alt="product image"></a>
                                 <div class="hot__box">
-                                    <span class="hot-label">BEST SALER</span>
+                                    <span class="hot-label">BEST SELLER</span>
                                 </div>
                             </div>
                             <div class="product__content content--center content--center">
