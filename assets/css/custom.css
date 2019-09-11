@@ -1,0 +1,480 @@
+/*********************************************************************************
+
+	Template Name: Boighor Bookshop Responsive Bootstrap4 Template  
+	Description: Template description
+	Version: 1.0
+	Note: This is custom css. All custom styles (user styles) declare here.
+
+**********************************************************************************/
+
+/* index Penjual */
+.account__form .input__box label span {
+	color: red;
+}
+
+.btn {
+	height: 30px;
+	line-height: 30px;
+	margin-top: -7px;
+	margin-left: 10px;
+	box-shadow: none;
+	background: white;
+	color: rgb(95, 220, 45);
+	font-weight: bolder;
+}
+
+body {
+	background: rgba(0, 0, 0, 0.02);
+	padding: 0
+}
+
+.login,
+.daftar {
+	margin-top: 12%;
+}
+
+.slider__content {
+	margin-top: 150px;
+}
+
+.btnBesar {
+	padding: 10px 20px;
+}
+
+.indexPenjual {
+	padding: 50px 0;
+}
+
+.indexPenjual .col-lg-12 h3 {
+	color: #2e2e2e;
+	font-weight: 600;
+}
+
+.hijau.col-lg-6 {
+	background: rgb(95, 220, 45);
+	padding: 50px 0;
+}
+
+.hijau.col-lg-6 i {
+	color: white;
+	padding: 30px;
+	border: 5px solid white;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+
+.indexPenjual .col-lg-12 h3 span {
+	color: rgb(95, 220, 45);
+}
+
+.indexPenjual .card {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.indexPenjual .col-lg-12 hr,
+.putih.col-lg-6 hr {
+	text-align: center;
+	border: none;
+	margin: 0 auto;
+	height: 2px;
+	width: 100px;
+	background: rgb(95, 220, 45);
+}
+
+.putih.col-lg-6 {
+	background: white;
+	padding: 50px 0;
+}
+
+.indexPenjual .col-lg-6 hr {
+	text-align: center;
+	border: none;
+	margin: 0 auto;
+	height: 2px;
+	width: 100px;
+	background: rgb(95, 220, 45);
+}
+
+.indexPenjual .col-lg-6 i {
+	margin-bottom: 25px;
+	border-radius: 50%;
+	border: 5px solid rgb(95, 220, 45);
+	padding: 30px;
+	color: rgb(95, 220, 45);
+}
+
+.indexPenjual .col-lg-6 h5 {
+	font-weight: 500;
+	color: rgb(95, 220, 45);
+}
+
+.indexPenjual .col-lg-6 p {
+	font-weight: 500;
+	color: #2e2e2e;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
+@media only screen and (max-width: 767px) {
+	#search_mini_form>.field__search {
+		display: none;
+	}
+
+	#email {
+		width: 100%;
+	}
+
+	.card {
+		width: 100%;
+	}
+}
+
+/* Dashboard Penjual */
+#user,
+#pesanan,
+#katalog,
+#penjualan {
+	width: 12% !important;
+}
+
+#user li a {
+	color: rgb(95, 220, 45);
+}
+
+#user li a:hover {
+	background-color: rgb(95, 220, 45);
+	color: white;
+}
+
+.menuBar ul li a,
+#set_task li a,
+#level li a,
+#penawaran p {
+	color: silver;
+}
+
+.menuBar ul li a:hover {
+	background-color: rgb(95, 220, 45);
+	color: white;
+}
+
+.kotak {
+	border: 1px solid rgb(95, 220, 45);
+	padding: 0 0 10px;
+	min-height: 100px;
+	margin: 0 auto;
+}
+
+.kotak h6 {
+	background: rgb(95, 220, 45);
+	padding: 5px;
+}
+
+/* Kontak Penjual */
+#formKontak {
+	margin-top: 10%;
+}
+
+#formKontak h6 {
+	font-weight: bolder;
+	color: rgb(95, 220, 45);
+	font-size: 30px;
+}
+
+#formKontak input,
+#formKontak textarea,
+#formKontak select {
+	border: 1px solid silver;
+	width: 99%;
+	box-shadow: none;
+}
+
+#formKontak button {
+	margin-left: 75%;
+	padding-bottom: 35px;
+	background: rgb(95, 220, 45);
+	color: white;
+	width: 100px;
+}
+
+#formKontak textarea {
+	height: 150px;
+}
+
+@media only screen and (max-width: 767px) {
+	#formKontak {
+		margin-top: 15%;
+		padding: 20px;
+	}
+}
+
+/* Form Produk */
+.row.formProduk {
+	padding: 2.5%;
+	margin-bottom: -9%;
+}
+
+#formProduk .kotakGambar {
+	width: 100px;
+	height: 100px;
+	border: 1px solid silver;
+	margin-bottom: 10px;
+}
+
+#formProduk .col-lg-2 p {
+	font-size: 13px;
+	color: silver;
+	text-align: justify;
+	line-height: 14px;
+	width: 200px;
+}
+
+#formProduk.col-lg-12 {
+	padding: 20px 50px;
+	margin: 6% auto 0;
+	width: 80%;
+	background: white;
+	border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+#formProduk h4 {
+	margin-bottom: 10px;
+}
+
+#formProduk hr {
+	margin-bottom: 20px;
+}
+
+#formProduk label {
+	margin-right: 8%;
+	font-weight: 600;
+}
+
+#formProduk input,
+#formProduk select {
+	font-size: 13px;
+	height: 40px;
+	font-weight: 400;
+}
+
+#formProduk select {
+	width: 20%;
+}
+
+#formProduk .col-lg-2 span.wajib {
+	border: 1px solid red;
+	color: red;
+	font-size: 12px;
+}
+
+#formProduk .row.form-group {
+	margin-bottom: 30px;
+}
+
+#formProduk .col-lg-10.harga span {
+	margin-right: 20px;
+}
+
+#formProduk .col-lg-10.harga input {
+	display: inline;
+	width: 25%;
+}
+
+#formProduk .col-lg-10.harga textarea {
+	width: 70%;
+	height: 200px;
+}
+
+#formProduk .col-lg-10.kondisi input[type="radio"] {
+	background: #2e2e2e;
+}
+
+#formProduk .col-lg-10.warna select,
+#formProduk .col-lg-10.warna input {
+
+	width: 50%;
+}
+
+#formProduk .col-lg-10.warna .row {
+	margin-bottom: 20px;
+}
+
+.row.btnProduk {
+	margin-top: 150px;
+}
+
+.row.btnProduk button {
+	background: rgb(95, 220, 45);
+	color: white;
+	padding-bottom: 30px;
+	font-weight: 200;
+}
+
+.row.btnProduk a {
+	padding-bottom: 30px;
+	font-weight: 200;
+	border: 1px solid silver;
+}
+
+.kotakPesan .closePesan {
+	font-weight: 500;
+	margin-right: 20px;
+}
+
+.kotakPesan .closePesan:hover {
+	color: rgb(95, 220, 45);
+	cursor: pointer;
+}
+
+.kotakPesan .fas {
+	margin-bottom: 20px;
+	color: blue;
+	border: 3px solid blue;
+	padding: 20px;
+	border-radius: 50%;
+}
+
+/* Admin index */
+#admin #kotak {
+	background: white;
+}
+
+#admin {
+	margin-bottom: 150px;
+	border: 2px solid rgb(95, 220, 45);
+	background: white;
+	padding: 20px;
+}
+
+#admin .col-lg-8 .kotak {
+	border: none;
+	margin-top: 20px;
+}
+
+#admin #kotak form {
+	padding: 10px;
+}
+
+#admin #kotak .btn {
+	background: rgb(95, 220, 45);
+	color: white;
+	border: none;
+	padding: 0 20px 35px;
+	margin-left: 75%;
+}
+
+#admin .col-lg-8 p {
+	text-align: justify;
+}
+
+#admin .kotak .col-lg-3 .fas {
+	color: rgb(95, 220, 45);
+}
+
+#admin h6 {
+	background: none;
+	font-weight: 500;
+	color: rgb(95, 220, 45);
+}
+
+/* Admin Dashboard */
+#adminD {
+	padding: 30px;
+}
+
+.modal h6,
+#nama_produk:focus+label,
+#nama_brand:focus+label {
+	color: #2e2e2e;
+}
+
+.modal {
+	width: 30%;
+	margin: 0 auto;
+}
+
+.modal .btn {
+	background: #2e2e2e;
+	color: white;
+	padding-bottom: 30px;
+	width: 50%;
+	margin-left: 50%;
+}
+
+.modal #nama_produk,
+.modal #nama_brand {
+	box-shadow: none;
+}
+
+#item_data select {
+	display: block;
+}
+
+#adminD .kotak {
+	background: #3979ff;
+	padding: 5px 0;
+	border-radius: 5px;
+	color: white;
+}
+
+#adminD .kotak .col-lg-8 h4 {
+	margin-top: 20px;
+	margin-bottom: -10px;
+}
+
+#adminD .kotak h6 a {
+	color: white;
+}
+
+#adminD .kotak h6 {
+	background: none;
+}
+
+#adminD .kotak h4 .fas {
+	margin-top: 15px;
+}
+
+/* modal */
+#produk.modal .modal-content,
+#brand.modal .modal-content {
+	padding: 50px;
+}
+
+#produk .modal-close,
+#brand .modal-close {
+	margin-left: 100%;
+	margin-bottom: 100%;
+	cursor: pointer;
+}
+
+/* Admin data penjual */
+#data {
+	margin: 0 20px;
+	padding: 20px;
+	margin-top: 10%;
+	background: white;
+	box-shadow: 0 0 5px .5px rgba(0, 0, 0, 0.3);
+	margin-bottom: 5%;
+}
+
+#data h5 {
+	margin-bottom: 20px;
+}
+
+#data .table tr th,
+#data .table tr td {
+	text-align: center;
+}
+
+#data tr td img {
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+}
