@@ -31,10 +31,9 @@
                                 </ul>
                             </div>
                             <div class="price-box">
-                                <span><?= number_format($produk['harga'], 0, ',', '.'); ?></span>
+                                <span>Rp. <?= number_format($produk['harga'], 0, ',', '.'); ?></span>
                             </div>
                             <div class="product__overview">
-                                <p>Deskripsi : <?= $produk['deskripsi']; ?></p>
                                 <p>Warna : <?= $produk['warna']; ?></p>
                                 <p>Berat : <?= $produk['berat'] . ' ' . $produk['satuan_berat'] ?></p>
                                 <p>Stok : <?= $produk['stok']; ?></p>
