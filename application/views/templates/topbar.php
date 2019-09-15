@@ -203,8 +203,6 @@
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
-														<span><a href="#">Profil Toko</a></span>
-														<span><a href="#">Pengaturan Akun</a></span>
 														<span><a href="<?= base_url('Penjual/index'); ?>">Login</a></span>
 														<span><a href="<?= base_url('Penjual/index'); ?>">Daftar Akun</a></span>
 													</div>
@@ -216,8 +214,6 @@
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
-														<span><a href="#">Profil Toko</a></span>
-														<span><a href="#">Pengaturan Akun</a></span>
 														<span><a href="<?= base_url('Penjual/index'); ?>">Login</a></span>
 														<span><a href="<?= base_url('Penjual/index'); ?>">Daftar Akun</a></span>
 													</div>

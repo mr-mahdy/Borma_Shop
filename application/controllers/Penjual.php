@@ -48,9 +48,10 @@ class Penjual extends CI_Controller
         } else {
             $data['judul'] = "Dashboard | Penjual";
             $data['menu'] = $this->mm->getMenuPenjual();
+            $data['penjual'] = $this->pm->getPenjualBySession();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
-            $this->load->view('Penjual/Dashboard');
+            $this->load->view('Penjual/Dashboard', $data);
             $this->load->view('Templates/footer');
         }
     }

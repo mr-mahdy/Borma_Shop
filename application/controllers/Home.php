@@ -34,6 +34,10 @@ class Home extends CI_Controller
         $data['subMenuKategori'] = $this->mm->getSubMenuKategori();
         $data['menu'] = $this->mm->getMenuPenjual();
         $data['produk'] = $this->hm->getProdukById($id);
+        $data['allProduk'] = $this->hm->getAllProduk();
+
+        $idP = $data['produk']['id_penjual'];
+        $data['penjual'] = $this->hm->getPenjualById($idP);
         $data['kategori'] = $this->mm->getMenuKategori();
         $this->load->view('Templates/header', $data);
         $this->load->view('Templates/topbar', $data);

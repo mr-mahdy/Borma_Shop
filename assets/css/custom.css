@@ -155,13 +155,6 @@ input[type=number]::-webkit-outer-spin-button {
 	color: white;
 }
 
-.menuBar ul li a,
-#set_task li a,
-#level li a,
-#penawaran p {
-	color: silver;
-}
-
 .menuBar ul li a:hover {
 	background-color: rgb(95, 220, 45);
 	color: white;
@@ -172,11 +165,20 @@ input[type=number]::-webkit-outer-spin-button {
 	padding: 0 0 10px;
 	min-height: 100px;
 	margin: 0 auto;
+	line-height: 100px;
 }
 
 .kotak h6 {
 	background: rgb(95, 220, 45);
 	padding: 5px;
+}
+
+#set_task li a .badge {
+	border-radius: 50%;
+}
+
+.kotak h5 {
+	line-height: 60px;
 }
 
 /* Kontak Penjual */
@@ -477,4 +479,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 #data tr td img {
 	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* detail produk */
+.product__info__main h1 {
+	text-transform: uppercase;
 }

@@ -58,6 +58,12 @@ if ($pesan != null) : ?>
                         <option value="<?= $mk['tipe_item']; ?>"><?= $mk['tipe_item']; ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <select name="kategori_sp" id="kategori2" class="form-control" disabled>
+                        <option disabled selected>Pilih Kategori Spesifik</option>
+                        <?php foreach ($menuKategori as $mk) : ?>
+                        <option value="<?= $mk['tipe_item']; ?>"><?= $mk['tipe_item']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
             <div class="row form-group">

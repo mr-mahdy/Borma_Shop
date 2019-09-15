@@ -192,6 +192,21 @@ class PenjualModel extends CI_Model
         }
     }
 
+    public function getPenjualBySession()
+    {
+        $data = [
+            'email' => $this->session->userdata('userPenjual'),
+            'password' => $this->session->userdata('passPenjual')
+        ];
+
+        $getPenjual = $this->db->get_where('penjual', $data);
+        if ($getPenjual->num_rows() > 0) {
+            return $getPenjual->row_array();
+        } else {
+            return false;
+        }
+    }
+
     public function getAllProduk($id)
     {
         $getAllProduk = $this->db->get_where('daftar_produk', ['id_penjual' => $id]);

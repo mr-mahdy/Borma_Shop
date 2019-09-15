@@ -16,4 +16,13 @@ class Home_model extends CI_Model
     {
         return $this->db->get_where('daftar_produk', ['id' => $id])->row_array();
     }
+    public function getAllProduk()
+    {
+        return $this->db->get_where('daftar_produk')->result_array();
+    }
+
+    public function getPenjualById($id)
+    {
+        return $this->db->get_where('penjual', ['id' => $id])->row_array();
+    }
 }
