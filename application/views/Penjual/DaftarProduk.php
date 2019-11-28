@@ -43,19 +43,17 @@
                 <th>Kategori</th>
                 <th>Harga</th>
                 <th>Stok</th>
-                <th>Tampilan</th>
                 <th>Aksi</th>
             </tr>
             <?php $i = 1; ?>
             <?php foreach ($allProduk as $produk) : ?>
             <tr>
                 <td><?= $i++ ?></td>
-                <td><img src="<?= base_url() . 'uploadImg/' . $produk['gambar'] ?>" alt="Produk" width="100"></td>
-                <td><?= $produk['nama_produk'] ?></td>
-                <td><?= $produk['kategori'] ?></td>
-                <td>Rp. <?= number_format($produk['harga'], 0, ',', '.') ?></td>
-                <td><?= $produk['stok'] ?></td>
-                <td><a href="" class="badge badge-success">View</a></td>
+                <td><img src="<?= base_url() . 'uploadImg/' . $produk['image'] ?>" alt="Produk" width="100"></td>
+                <td><?= $produk['name'] ?></td>
+                <td><?= $produk['category'] ?></td>
+                <td>Rp. <?= number_format($produk['price'], 0, ',', '.') ?></td>
+                <td><?= $produk['stock'] ?></td>
                 <td>
                     <a href='<?= base_url("Penjual/editProduk/{$produk['id']}") ?>' class="badge badge-primary">Edit</a>
                     <a href='<?= base_url("Penjual/deleteProduk/{$produk['id']}") ?>' class="badge badge-danger" onclick="return confirm('Apakah ingin menghapus Produk')">Hapus</a>

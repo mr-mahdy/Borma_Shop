@@ -3,29 +3,6 @@
 class PenjualModel extends CI_Model
 {
 
-    public function createAkun()
-    {
-        $namaToko = $this->input->post('namaToko');
-        $email = $this->input->post('emailD');
-        $pass = $this->input->post('pass');
-        $noTelp = $this->input->post('noTelp');
-        $pin = $this->input->post('pin');
-
-        $data = array(
-            'nama_toko'         => $namaToko,
-            'email'             => $email,
-            'password'          => $pass,
-            'noTelp'            => $noTelp,
-            'pin'               => $pin,
-            'tanggal_dibuat'    => date('d-m-Y'),
-            'bulan'             => date('m'),
-            'tahun'             => date('Y')
-        );
-
-        $this->db->insert('penjual', $data);
-        return $this->db->affected_rows();
-    }
-
     public function login($user, $pass)
     {
         $data = [
@@ -46,144 +23,61 @@ class PenjualModel extends CI_Model
         return $check_user->result_array()[0]['verifikasi'];
     }
 
-    public function cekKontak()
-    {
-        $user = $this->session->userdata('userPenjual');
-        $pass = $this->session->userdata('passPenjual');
-        $sessionData = [
-            'email' => $user,
-            'password' => $pass
-        ];
-
-        $cekPenjual = $this->db->get_where('penjual', $sessionData);
-        if ($cekPenjual->num_rows() > 0) {
-            $id = $cekPenjual->row('id');
-            $sessionData = [
-                'id' => $id,
-                'alamat' => ''
-            ];
-            $cekAlamat = $this->db->get_where('penjual', $sessionData);
-            if ($cekAlamat->num_rows() > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function getNamaBrandHp()
-    {
-        $getItem = $this->db->get_where('item', ['nama_item' => 'Handphone']);
-        if ($getItem->num_rows() > 0) {
-            $id = $getItem->row('id');
-            $getBrand = $this->db->get_where('brand', ['id_item' => $id]);
-            if ($getBrand->num_rows() > 0) {
-                return $getBrand->result();
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function insertKontakPenjual()
-    {
-        $namaPenjual = $this->input->post('nama_penjual');
-        $alamat = $this->input->post('alamat');
-        $kotaPenjual = $this->input->post('kota_penjual');
-        $user = $this->session->userdata('userPenjual');
-        $pass = $this->session->userdata('passPenjual');
-
-        $sessionData = [
-            'email' => $user,
-            'password' => $pass
-        ];
-
-        $cekPenjual = $this->db->get_where('penjual', $sessionData);
-        if ($cekPenjual->num_rows() > 0) {
-            $id = $cekPenjual->row('id');
-            $data = array(
-                'nama_penjual'         => $namaPenjual,
-                'alamat'             => $alamat,
-                'kota_penjual'          => $kotaPenjual
-            );
-            $updatePenjual = $this->db->where('id', $id)->update('penjual', $data);
-            if ($updatePenjual) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
     public function insertProduk($idP)
     {
-        $namaProduk = $this->input->post('namaProduk');
-        $kategori = $this->input->post('kategori');
-        $pesananMin = $this->input->post('pesananMin');
-        $harga = $this->input->post('harga');
-        if ($this->input->post('warna') == null) {
-            $warna = $this->input->post('warna2');
-        } else {
-            $warna = $this->input->post('warna');
-        }
-        $ukuran = $this->input->post('ukuran');
-        $berat = $this->input->post('berat');
-        $satuan = $this->input->post('satuan');
-        $stok = $this->input->post('stok');
-        $kondisi = $this->input->post('kondisi');
-        $deskripsi = $this->input->post('deskripsi');
-
-        $config['upload_path'] = './uploadImg';
-        $config['allowed_types'] = 'png|jpg|jpeg';
-        $this->load->library('upload', $config);
-        $gmb = $this->upload->do_upload('gambar') . $this->upload->data('file_name');
-        $gambar = substr($gmb, 1);
+        $name = $this->input->post('name');
+        $category = $this->input->post('category');
+        $minOrder = $this->input->post('min_order');
+        $price = $this->input->post('price');
+        $color = $this->input->post('color');
+        $size = $this->input->post('size');
+        $weight = $this->input->post('weight');
+        $unit = $this->input->post('unit_weight');
+        $stock = $this->input->post('stock');
+        $condition = $this->input->post('condition');
+        $description = $this->input->post('description');
+        $image = $this->_uploadImage();
 
         $data = [
-            'nama_produk' => $namaProduk,
-            'kategori' => $kategori,
-            'pesanan_min' => $pesananMin,
-            'harga' => $harga,
-            'warna' => $warna,
-            'ukuran'      => $ukuran,
-            'berat'      => $berat,
-            'satuan_berat' => $satuan,
-            'stok'      => $stok,
-            'kondisi'      => $kondisi,
-            'deskripsi'      => $deskripsi,
-            'gambar' => $gambar,
-            'tanggal_upload' => time(),
-            'id_Penjual' => $idP
+            'name' => $name,
+            'category' => $category,
+            'min_order' => $minOrder,
+            'price' => $price,
+            'color' => $color,
+            'size'      => $size,
+            'weight'      => $weight,
+            'unit_weight' => $unit,
+            'stock'      => $stock,
+            'condition'      => $condition,
+            'description'      => $description,
+            'image' => $image,
+            'date_upload' => time(),
+            'id_user' => $idP
         ];
 
         $this->db->insert('daftar_produk', $data);
 
-        if ($this->db->affected_rows() > 0) {
-            return $this->db->insert_id();
-        } else {
-            return false;
-        }
+        return $this->db->affected_rows();
     }
 
-    public function uploadGambar($id)
+    private function _uploadImage()
     {
-        $gmb = $this->db->get_where('daftar_produk', ['id' => $id])->result_array();
-        return $gmb;
+        $config['upload_path'] = './uploadImg';
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['min_width']            = 600;
+        $config['min_height']           = 400;
+        $this->load->library('upload', $config);
+        $gmb = $this->upload->do_upload('image') . $this->upload->data('file_name');
+        return substr($gmb, 1);
     }
 
     public function getIdPenjual()
     {
         $data = [
-            'email' => $this->session->userdata('userPenjual'),
-            'password' => $this->session->userdata('passPenjual')
+            'email' => $this->session->userdata('email'),
+            'role_id' => $this->session->userdata('role_id')
         ];
-        $getPenjual = $this->db->get_where('penjual', $data);
+        $getPenjual = $this->db->get_where('user', $data);
         $getId = $getPenjual->row('id');
         if ($getPenjual->num_rows() > 0) {
             return $getId;
@@ -195,11 +89,11 @@ class PenjualModel extends CI_Model
     public function getPenjualBySession()
     {
         $data = [
-            'email' => $this->session->userdata('userPenjual'),
-            'password' => $this->session->userdata('passPenjual')
+            'email' => $this->session->userdata('email'),
+            'role_id' => $this->session->userdata('role_id')
         ];
 
-        $getPenjual = $this->db->get_where('penjual', $data);
+        $getPenjual = $this->db->get_where('user', $data);
         if ($getPenjual->num_rows() > 0) {
             return $getPenjual->row_array();
         } else {
@@ -209,7 +103,7 @@ class PenjualModel extends CI_Model
 
     public function getAllProduk($id)
     {
-        $getAllProduk = $this->db->get_where('daftar_produk', ['id_penjual' => $id]);
+        $getAllProduk = $this->db->get_where('daftar_produk', ['id_user' => $id]);
         if ($getAllProduk->num_rows() > 0) {
             return $getAllProduk->result_array();
         } else {

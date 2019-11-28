@@ -9,7 +9,7 @@
                             <a href="<?= base_url('Home/index'); ?>" style="font-size: 50px;font-weight: bolder;">
                                 B<span class="fas fa-store"></span>rma
                             </a>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered duskam alteration variations of passages</p>
+                            <p>Alamat : Jl. Dr. Setiabudi No. 156 Hergamanah, Kota Bandung, Jawa Barat</p>
                         </div>
                         <div class="footer__content">
                             <ul class="social__net social__net--2 d-flex justify-content-center">
@@ -20,11 +20,9 @@
                                 <li><a href="#"><i class="bi bi-youtube"></i></a></li>
                             </ul>
                             <ul class="mainmenu d-flex justify-content-center">
-                                <li><a href="index.html">Trending</a></li>
-                                <li><a href="index.html">Best Seller</a></li>
+                                <li><a href="<?= base_url('Home/index'); ?>">Home</a></li>
+                                <li><a href="<?= base_url('Auth/index'); ?>">Login</a></li>
                                 <li><a href="index.html">Semua Produk</a></li>
-                                <li><a href="index.html">Wishlist</a></li>
-                                <li><a href="index.html">Kontak</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,8 +60,6 @@
 <script src="<?= base_url('assets/js/plugins.js') ?>"></script>
 <script src="<?= base_url('assets/js/active.js') ?>"></script>
 <script src="<?= base_url('assets/materialize/js/materialize.js'); ?>"></script>
-
-<script src="<?= base_url('assets/js/script.js') ?>"></script>
 
 
 

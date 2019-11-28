@@ -23,9 +23,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/font/css/all.min.css'); ?>">
 
-    <!-- Cusom css -->
+    <!-- Custom css -->
     <link rel="stylesheet" href="<?= base_url('assets/css/custom.css') ?>">
 
     <!-- Modernizer js -->
     <script src="<?= base_url('assets/js/vendor/modernizr-3.5.0.min.js') ?>"></script>
 </head>
+
+<body style="background: rgba(0,0,0,0.05)">
+    <!-- Main wrapper -->
+    <div class="wrapper" id="wrapper">

@@ -7,7 +7,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="wn__fotorama__wrapper">
                             <div class="fotorama wn__fotorama__action" data-nav="thumbs">
-                                <a href="<?= $produk['gambar'] ?>"><img src="<?= base_url() . 'uploadImg/' . $produk['gambar'] ?>" alt=""></a>
+                                <a href=""><img src="<?= base_url() . 'uploadImg/' . $produk['image'] ?>" alt=""></a>
                                 <a href="2.jpg"><img src="<?= base_url() ?>assets/images/product/2.jpg" alt=""></a>
                                 <a href="3.jpg"><img src="<?= base_url() ?>assets/images/product/3.jpg" alt=""></a>
                                 <a href="4.jpg"><img src="<?= base_url() ?>assets/images/product/4.jpg" alt=""></a>
@@ -20,8 +20,8 @@
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="product__info__main">
-                            <h1><?= $produk['nama_produk']; ?></h1>
-                            <p>Toko : <?= $penjual['nama_toko']; ?></p>
+                            <h1><?= $produk['name']; ?></h1>
+                            <p>Penjual : <?= $penjual['name']; ?></p>
                             <div class="product-reviews-summary d-flex">
                                 <ul class="rating-summary d-flex">
                                     <li><i class="zmdi zmdi-star-outline"></i></li>
@@ -32,18 +32,18 @@
                                 </ul>
                             </div>
                             <div class="price-box">
-                                <span>Rp. <?= number_format($produk['harga'], 0, ',', '.'); ?></span>
+                                <span>Rp. <?= number_format($produk['price'], 0, ',', '.'); ?></span>
                             </div>
                             <div class="product__overview">
                                 <p>OVERVIEW PRODUK</p>
-                                <p>Kondisi : <?= $produk['kondisi']; ?></p>
-                                <p>Warna : <?= $produk['warna']; ?></p>
-                                <p>Berat : <?= $produk['berat'] . ' ' . $produk['satuan_berat'] ?></p>
-                                <p>Stok : <?= $produk['stok']; ?></p>
+                                <p>Kondisi : <?= $produk['condition']; ?></p>
+                                <p>Warna : <?= $produk['color']; ?></p>
+                                <p>Berat : <?= $produk['weight'] . ' ' . $produk['unit_weight'] ?></p>
+                                <p>Stok : <?= $produk['stock']; ?></p>
                             </div>
                             <div class="box-tocart d-flex">
                                 <span>Jumlah</span>
-                                <input id="qty" class="input-text qty" name="qty" min="<?= $produk['pesanan_min'] ?>" value="<?= $produk['pesanan_min'] ?>" title="Qty" type="number">
+                                <input id="qty" class="input-text qty" name="qty" min="<?= $produk['min_order'] ?>" value="<?= $produk['min_order'] ?>" title="Qty" type="number">
                                 <div class="addtocart__actions">
                                     <button class="tocart" type="submit" title="Tambah Ke Keranjang">Tambah</button>
                                 </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="product_meta">
                                 <span class="posted_in">Kategori:
-                                    <a href="#"><?= $produk['kategori']; ?></a>
+                                    <a href="#"><?= $produk['category']; ?></a>
                                 </span>
                             </div>
                             <div class="product-share">
@@ -95,7 +95,7 @@
                     <!-- Start Single Tab Content -->
                     <div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
                         <div class="description__attribute">
-                            <p><?= $produk['deskripsi']; ?></p>
+                            <p><?= $produk['description']; ?></p>
                         </div>
                     </div>
                     <!-- End Single Tab Content -->
@@ -444,7 +444,7 @@
                         <?php foreach ($kategori as $k) : ?>
                         <?php $jmlK = 0; ?>
                         <?php foreach ($allProduk as $produk) : ?>
-                        <?php if ($k['tipe_item'] == $produk['kategori']) : ?>
+                        <?php if ($k['tipe_item'] == $produk['category']) : ?>
                         <?php $jmlK++; ?>
                         <?php endif; ?>
                         <?php endforeach; ?>

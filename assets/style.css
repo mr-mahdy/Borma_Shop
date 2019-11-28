@@ -1978,35 +1978,24 @@ Elements Styles
 	flex-basis: 25%;
 }
 
-.box-menu-content .ppnav .ppmainmenu li.drop .ppmegamenu .item .title {
+.box-menu-content .ppnav .ppmainmenu li.drop .ppmegamenu .item .title a {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	color: #fff;
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 20px;
 	margin-bottom: 19px;
-	margin-left: 30px;
-	margin-right: 20px;
-	padding-bottom: 10px;
 	padding-left: 0;
 	text-transform: uppercase;
 }
 
-.box-menu-content .ppnav .ppmainmenu li.drop .ppmegamenu .item li a {
-	color: #aaaaaa;
-	font-size: 13px;
-	font-weight: normal;
-	line-height: 34px;
-	text-transform: capitalize;
-	display: block;
-	padding: 0;
-	transition: 0.3s;
-}
-
-.box-menu-content .ppnav .ppmainmenu li.drop .ppmegamenu .item li a:hover {
+.box-menu-content .ppnav .ppmainmenu li.drop .ppmegamenu .item .title a:hover {
 	color: rgb(95, 220, 45);
 	padding-left: 3px;
 }
+
+
+
 
 .box-menu-content .ppnav .ppmainmenu li.drop:hover .ppmegamenu {
 	opacity: 1;

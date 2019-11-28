@@ -165,7 +165,6 @@ input[type=number]::-webkit-outer-spin-button {
 	padding: 0 0 10px;
 	min-height: 100px;
 	margin: 0 auto;
-	line-height: 100px;
 }
 
 .kotak h6 {
@@ -177,8 +176,13 @@ input[type=number]::-webkit-outer-spin-button {
 	border-radius: 50%;
 }
 
-.kotak h5 {
-	line-height: 60px;
+.kotak ul {
+	margin-top: 20px;
+}
+
+.kotak ul li {
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 /* Kontak Penjual */

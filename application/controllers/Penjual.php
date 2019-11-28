@@ -7,178 +7,89 @@ class Penjual extends CI_Controller
         parent::__construct();
         $this->load->model('Penjual/PenjualModel', 'pm');
         $this->load->model('Menu/Menu_model', 'mm');
+        $this->load->library('form_validation');
     }
 
     public function index()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            $data['judul'] = "Akun Penjual | Penjual";
-            $data['menuKategori'] = $this->mm->getMenuKategori();
-            $data['subMenuKategori'] = $this->mm->getSubMenuKategori();
-            $this->load->view('Templates/header', $data);
-            $this->load->view('Templates/topbar', $data);
-            $this->load->view('Penjual/index');
-            $this->load->view('Templates/footer');
-        } else {
-            return redirect('Penjual/Dashboard');
-        }
-    }
-
-    public function createAkun()
-    {
-        $result = $this->pm->createAkun();
-        if ($result > 0) {
-            $this->session->set_flashdata('pesan', 'Silahkan Ditunggu Proses Verifikasi oleh Admin');
-            $data['judul'] = "Akun Penjual | Penjual";
-            $data['menuKategori'] = $this->mm->getMenuKategori();
-            $data['subMenuKategori'] = $this->mm->getSubMenuKategori();
-            $this->load->view('Templates/header', $data);
-            $this->load->view('Templates/topbar');
-            $this->load->view('Penjual/index');
-            $this->load->view('Templates/footer');
-        } else {
-            return redirect('Penjual/index');
-        }
-    }
-
-    public function Dashboard()
-    {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
             $data['judul'] = "Dashboard | Penjual";
             $data['menu'] = $this->mm->getMenuPenjual();
             $data['penjual'] = $this->pm->getPenjualBySession();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
-            $this->load->view('Penjual/Dashboard', $data);
+            $this->load->view('Penjual/index', $data);
             $this->load->view('Templates/footer');
-        }
-    }
-
-    public function login()
-    {
-        $user = $this->input->post('userPenjual');
-        $pass = $this->input->post('passPenjual');
-        $result = $this->pm->login($user, $pass);
-        $verifikasi = $this->pm->cekVerifikasiPenjual($user, $pass);
-        if ($result) {
-            if ($verifikasi == 'Iya') {
-                $sessionData = [
-                    'userPenjual' => $user,
-                    'passPenjual' => $pass
-                ];
-                $this->session->set_userdata($sessionData);
-                return redirect('Penjual/Dashboard');
-            } else {
-                $this->session->set_flashdata('msg', 'Akun Penjual Belum Diverifikasi oleh Admin');
-                return redirect('Penjual/index');
-            }
         } else {
-            $this->session->set_flashdata('msg', 'Username dan Password Salah');
-            return redirect('Penjual/index');
+            return redirect('Auth/index');
         }
     }
 
     public function logout()
     {
-        $this->session->unset_userdata('userPenjual');
-        $this->session->unset_userdata('passPenjual');
-        return redirect('Penjual/index');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+        return redirect('Auth/index');
     }
 
     public function insertProduk()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
+            $this->form_validation->set_rules('name', 'Nama Produk', 'required|trim');
+            // $this->form_validation->set_rules('image', 'Gambar', 'required');
+            $this->form_validation->set_rules('category', 'Kategori', 'required');
+            $this->form_validation->set_rules('price', 'Harga', 'required|trim');
+            $this->form_validation->set_rules('min_order', 'Pesanan Min', 'required|trim');
+            $this->form_validation->set_rules('color', 'Warna', 'required|trim');
+            $this->form_validation->set_rules('size', 'Ukuran', 'trim');
+            $this->form_validation->set_rules('weight', 'Berat', 'trim');
+            $this->form_validation->set_rules('stock', 'Jumlah Stok', 'required|trim');
+            $this->form_validation->set_rules('condition', 'Kondisi', 'required|trim');
             $id = $this->pm->getIdPenjual();
-            $result = $this->pm->insertProduk($id);
-            if ($result != false) {
-                $gmb = $this->pm->uploadGambar($result);
-
-                $this->session->set_flashdata('pesan', 'Data Berhasil Di Simpan');
-
-                $output = '<img src="' . base_url() . 'uploadImg/' . $gmb[0]['gambar'] . '" class="responsive_img" width="100">';
-                echo $output;
-            } else {
-                $this->session->set_flashdata('pesan', 'Data Gagal Di Simpan');
-                return redirect('Penjual/CreateProduk');
-            }
-        }
-    }
-
-    public function CreateProduk()
-    {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
-            $result = $this->pm->cekKontak();
-            $data['warna'] = ['Putih', 'Hitam', 'Biru', 'Silver'];
-            $data['satuan'] = ['Kilogram (kg)', 'gram (g)', 'Hektogram (hg)'];
-            $data['menu'] = $this->mm->getMenuPenjual();
-
-            if ($result) {
-                $data['judul'] = "Kontak Penjual | Penjual";
-                $this->load->view('Templates/header', $data);
-                $this->load->view('Templates/topbar', $data);
-                $this->load->view('Penjual/KontakPenjual', $data);
-            } else {
-                $data['judul'] = "Tambah Produk | Penjual";
-                $this->load->view('Templates/header', $data);
-                $this->load->view('Templates/topbar', $data);
+            if ($this->form_validation->run() == false) {
+                $data['warna'] = ['Putih', 'Hitam', 'Biru', 'Silver'];
+                $data['satuan'] = ['Kilogram (kg)', 'gram (g)', 'Hektogram (hg)'];
+                $data['judul'] = "Buat Produk | Penjual";
                 $data['menuKategori'] = $this->mm->getMenuKategori();
-                $this->load->view('Penjual/CreateProduk', $data);
-            }
-            $this->load->view('Templates/footer');
-        }
-    }
-
-    public function getNamaBrandHp()
-    {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
-            $output = '';
-            $result = $this->pm->getNamaBrandHp();
-            if ($result) {
-                if (count($result)) {
-                    $output .= '<select name="brand_hp" id="brand_hp">';
-                    foreach ($result as $brand) {
-                        $output .= '<option value="';
-                        $output .= $brand->id;
-                        $output .= '">';
-                        $output .= $brand->nama_brand;
-                        $output .= '</option>';
-                    }
-                    $output .= '</select>';
+                $this->load->view('Templates/header', $data);
+                $this->load->view('Templates/topbar');
+                $this->load->view('Penjual/createProduk', $data);
+                $this->load->view('Templates/footer');
+            } else {
+                $result = $this->pm->insertProduk($id);
+                if ($result > 0) {
+                    $this->session->set_flashdata('pesanInsertProduk', 'Data Produk Berhasil Disimpan');
+                    redirect('Penjual/index');
                 } else {
-                    $output .= '<select disabled></select>';
+                    $this->session->set_flashdata('pesan', 'Data Produk Gagal Disimpan');
+                    redirect('Penjual/createProduk');
                 }
             }
-            echo $output;
+        } else {
+            return redirect('Auth/index');
         }
     }
 
-    public function insertKontakPenjual()
+    public function createProduk()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
+        if ($this->session->userdata('role_id') == 1) {
+            $data['warna'] = ['Putih', 'Hitam', 'Biru', 'Silver'];
+            $data['satuan'] = ['Kilogram (kg)', 'gram (g)', 'Hektogram (hg)'];
+
+            $data['judul'] = "Buat Produk | Penjual";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar', $data);
+            $this->load->view('Penjual/createProduk', $data);
+            $this->load->view('Templates/footer');
         } else {
-            $result = $this->pm->insertKontakPenjual();
-            if ($result) {
-                return redirect('Penjual/Dashboard');
-            } else {
-                $this->load->view('Penjual/KontakPenjual');
-            }
+            return redirect('Auth/index');
         }
     }
 
-    public function DaftarProduk()
+    public function daftarProduk()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
             $data['judul'] = "Pengelolaan Produk | Penjual";
             $data['menu'] = $this->mm->getMenuPenjual();
             $id = $this->pm->getIdPenjual();
@@ -187,6 +98,8 @@ class Penjual extends CI_Controller
             $this->load->view('Templates/topbar', $data);
             $this->load->view('Penjual/DaftarProduk', $data);
             $this->load->view('Templates/footer');
+        } else {
+            return redirect('Auth/index');
         }
     }
 

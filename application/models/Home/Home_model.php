@@ -23,6 +23,25 @@ class Home_model extends CI_Model
 
     public function getPenjualById($id)
     {
-        return $this->db->get_where('penjual', ['id' => $id])->row_array();
+        return $this->db->get_where('user', ['id' => $id])->row_array();
+    }
+
+    public function registration()
+    {
+        $name = $this->input->post('name', true);
+        $email = $this->input->post('email', true);
+        $pass = password_hash($this->input->post('password', true), PASSWORD_DEFAULT);
+
+        $data = array(
+            'name'         => $name,
+            'email'             => $email,
+            'image'             => 'default.jpg',
+            'password'          => $pass,
+            'role_id'           => 1,
+            'is_active'         => 1,
+            'date_created'      => date('d-m-Y'),
+        );
+
+        $this->db->insert('user', $data);
     }
 }
