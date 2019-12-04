@@ -74,7 +74,6 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['judul'] = "Akun Penjual | Penjual";
             $data['menuKategori'] = $this->mm->getMenuKategori();
-            $data['subMenuKategori'] = $this->mm->getSubMenuKategori();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar');
             $this->load->view('Home/registration');

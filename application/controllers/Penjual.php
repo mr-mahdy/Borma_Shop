@@ -105,47 +105,48 @@ class Penjual extends CI_Controller
 
     public function deleteProduk($id)
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
             $result = $this->pm->deleteProduk($id);
             if ($result > 0) {
-                $this->session->set_flashdata('msg2', 'Produk Telah Dihapus');
+                $this->session->set_flashdata('msg', 'Produk Berhasil Dihapus');
             }
             return redirect('Penjual/DaftarProduk');
+        } else {
+            return redirect('Home/index');
         }
     }
 
     public function editProduk($id)
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
-            $data['produk'] = $this->pm->getProdukById($id);
+        if ($this->session->userdata('role_id') == 1) {
+            $data['produk'] =           $this->pm->getProdukById($id);
             $data['warna'] = ['Putih', 'Hitam', 'Biru', 'Silver'];
             $data['satuan'] = ['Kilogram (kg)', 'gram (g)', 'Hektogram (hg)'];
-            $data['menu'] = $this->mm->getMenuPenjual();
-            $data['menuKategori'] = $this->mm->getMenuKategori();
+
             $data['judul'] = "Edit Produk | Penjual";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
             $this->load->view('Penjual/EditProduk', $data);
             $this->load->view('Templates/footer');
+        } else {
+            return redirect('Penjual/index');
         }
     }
 
     public function updateProduk()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
-            $result = $this->pm->updateProduk();
+        if ($this->session->userdata('role_id') == 1) {
+            $id = $this->input->post('id');
+            $result = $this->pm->updateProduk($id);
             if ($result > 0) {
-                $this->session->set_flashdata('pesan', 'Data Berhasil Di Update');
+                $this->session->set_flashdata('msg', 'Data Berhasil Diubah');
             } else {
-                $this->session->set_flashdata('pesan2', 'Data Gagal Di Simpan');
+                $this->session->set_flashdata('msg', 'Data Gagal Diubah');
             }
             return redirect('Penjual/DaftarProduk');
+        } else {
+            return redirect('Penjual/index');
         }
     }
 }

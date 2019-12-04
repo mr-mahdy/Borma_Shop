@@ -18,11 +18,11 @@
 					<ul class="meninmenu d-flex justify-content-start">
 						<!-- Jika loginnya pembeli atau yang belum login tampilkan menu keranjang -->
 						<?php if ($this->session->userdata('role_id') == 2 || $this->session->userdata('role_id') == null) : ?>
-						<li class="drop"><a href="shop-grid.html">Kategori</a>
+						<li class="drop"><a href="!#">Kategori</a>
 							<div class="megamenu mega01">
-								<ul class="item item03">
+								<ul class="item item01">
 									<?php foreach ($menuKategori as $mk) : ?>
-									<li class="title"><a href=""><?= $mk['tipe_item']; ?></a></li>
+									<li class="title"><a href="<?= base_url('home/gridproduk') ?>"><?= $mk['tipe_item']; ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div>

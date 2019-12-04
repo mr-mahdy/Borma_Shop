@@ -1,6 +1,11 @@
 <!-- Start main Content -->
 <div class="container mt--150">
     <div class="row">
+        <div class="col-lg-3">
+            <p>Home / Detail Produk</p>
+        </div>
+    </div>
+    <div class="row mt--20">
         <div class="col-lg-9 col-12">
             <div class="wn__single__product">
                 <div class="row">
