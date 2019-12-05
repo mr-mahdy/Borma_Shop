@@ -179,4 +179,28 @@ class PenjualModel extends CI_Model
 
         return $this->db->affected_rows();
     }
+
+    public function updateProfil($id)
+    {
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $image = $this->_uploadImage();
+
+        $data = [];
+        if ($image == null) {
+            $data = [
+                'name'  => $name,
+                'email' => $email
+            ];
+        } else {
+            $data = [
+                'name' => $name,
+                'email' => $email,
+                'image' => $image
+            ];
+        }
+
+
+        $this->db->update('user', $data, ['id' => $id]);
+    }
 }

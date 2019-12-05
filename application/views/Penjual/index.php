@@ -18,12 +18,12 @@
             <div class="kotak">
                 <h6>Akun Penjual</h6>
 
-                <img src="<?= base_url(); ?>/assets/img/user/<?= $penjual['image']; ?>" alt="profil User">
+                <img src="<?= base_url(); ?>/uploadImg/<?= $penjual['image']; ?>" alt="Profil User">
                 <ul>
                     <li>Nama : <?= $penjual['name']; ?></li>
                     <li>Email : <?= $penjual['email']; ?></li>
                     <li>Tanggal Dibuat : <?= $penjual['date_created']; ?></li>
-                    <li><a href="" class="badge badge-primary text-white">Edit Profil</a></li>
+                    <li><a href="<?= base_url('penjual/editProfil') ?>" class="badge badge-primary text-white">Edit Profil</a></li>
                 </ul>
 
 
