@@ -36,7 +36,6 @@ class Penjual extends CI_Controller
     {
         if ($this->session->userdata('role_id') == 1) {
             $this->form_validation->set_rules('name', 'Nama Produk', 'required|trim');
-            // $this->form_validation->set_rules('image', 'Gambar', 'required');
             $this->form_validation->set_rules('category', 'Kategori', 'required');
             $this->form_validation->set_rules('price', 'Harga', 'required|trim');
             $this->form_validation->set_rules('min_order', 'Pesanan Min', 'required|trim');
@@ -105,47 +104,112 @@ class Penjual extends CI_Controller
 
     public function deleteProduk($id)
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
             $result = $this->pm->deleteProduk($id);
             if ($result > 0) {
-                $this->session->set_flashdata('msg2', 'Produk Telah Dihapus');
+                $this->session->set_flashdata('msg', 'Produk Berhasil Dihapus');
             }
             return redirect('Penjual/DaftarProduk');
+        } else {
+            return redirect('Auth/index');
         }
     }
 
     public function editProduk($id)
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
+        if ($this->session->userdata('role_id') == 1) {
             $data['produk'] = $this->pm->getProdukById($id);
             $data['warna'] = ['Putih', 'Hitam', 'Biru', 'Silver'];
             $data['satuan'] = ['Kilogram (kg)', 'gram (g)', 'Hektogram (hg)'];
-            $data['menu'] = $this->mm->getMenuPenjual();
-            $data['menuKategori'] = $this->mm->getMenuKategori();
+
             $data['judul'] = "Edit Produk | Penjual";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
             $this->load->view('Penjual/EditProduk', $data);
             $this->load->view('Templates/footer');
+        } else {
+            return redirect('Auth/index');
         }
     }
 
     public function updateProduk()
     {
-        if ($this->session->userdata('userPenjual') == "" &&  $this->session->userdata('passPenjual') == "") {
-            return redirect('Penjual/index');
-        } else {
-            $result = $this->pm->updateProduk();
-            if ($result > 0) {
-                $this->session->set_flashdata('pesan', 'Data Berhasil Di Update');
+        if ($this->session->userdata('role_id') == 1) {
+            $this->form_validation->set_rules('name', 'Nama Produk', 'required|trim');
+            $this->form_validation->set_rules('category', 'Kategori', 'required');
+            $this->form_validation->set_rules('price', 'Harga', 'required|trim');
+            $this->form_validation->set_rules('min_order', 'Pesanan Min', 'required|trim');
+            $this->form_validation->set_rules('color', 'Warna', 'required|trim');
+            $this->form_validation->set_rules('size', 'Ukuran', 'trim');
+            $this->form_validation->set_rules('weight', 'Berat', 'trim');
+            $this->form_validation->set_rules('stock', 'Jumlah Stok', 'required|trim');
+            $this->form_validation->set_rules('condition', 'Kondisi', 'required|trim');
+
+            $id = $this->input->post('id');
+            $result = $this->pm->updateProduk($id);
+            if ($this->form_validation->run() == false) {
+                $this->editProduk($id);
             } else {
-                $this->session->set_flashdata('pesan2', 'Data Gagal Di Simpan');
+                if ($result > 0) {
+                    $this->session->set_flashdata('msg', 'Data Berhasil Diubah');
+                } else {
+                    $this->session->set_flashdata('msg', 'Data Gagal Diubah');
+                }
+                return redirect('Penjual/DaftarProduk');
             }
-            return redirect('Penjual/DaftarProduk');
+        } else {
+            return redirect('Auth/index');
+        }
+    }
+
+    public function editProfil()
+    {
+        if ($this->session->userdata('role_id') == 1) {
+            $data['penjual'] = $this->pm->getPenjualBySession();
+
+            $data['judul'] = "Edit Profil | Penjual";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar', $data);
+            $this->load->view('Penjual/EditProfil', $data);
+            $this->load->view('Templates/footer');
+        } else {
+            return redirect('Auth/index');
+        }
+    }
+
+    public function updateProfil()
+    {
+
+        if ($this->session->userdata('role_id') == 1) {
+            $this->form_validation->set_rules('name', 'Nama', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('password', 'Password', 'required|trim');
+            $password = $this->input->post('password');
+            if ($this->form_validation->run() == false) {
+                $this->editProfil();
+            } else {
+                if ($this->_validationPassword($password)) {
+                    $id = $this->pm->getIdPenjual();
+                    $this->pm->updateProfil($id);
+                    $this->session->set_flashdata('pesanInsertProduk', 'Data Profil Berhasil Diubah');
+                    return redirect('Penjual/index');
+                } else {
+                    $this->session->set_flashdata('pesan', 'Password yang anda masukan salah');
+                    $this->editProfil();
+                }
+            }
+        } else {
+            return redirect('Auth/index');
+        }
+    }
+
+    private function _validationPassword($password)
+    {
+        $user = $this->pm->getPenjualBySession();
+        if (password_verify($password, $user['password'])) {
+            return $user['role_id'] == 1;
         }
     }
 }

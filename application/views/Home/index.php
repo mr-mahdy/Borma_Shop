@@ -57,7 +57,9 @@
 			<div class="product product__style--3">
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="product__thumb">
-						<a class="first__img" href="<?= base_url("Home/detailProduk/{$pb['id']}") ?>"><img src="<?= base_url() . 'uploadImg/' . $pb['image'] ?>" alt="product image" height="200"></a>
+						<a class="first__img" href="<?= base_url("Home/detailProduk/{$pb['id']}") ?>">
+							<img src="<?= base_url() . 'uploadImg/' . $pb['image'] ?>" alt="product image" height="250">
+						</a>
 						<div class="hot__box">
 							<span class="hot-label">Baru</span>
 						</div>

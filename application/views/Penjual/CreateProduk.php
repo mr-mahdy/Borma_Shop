@@ -1,16 +1,3 @@
-<?php
-$pesan = $this->session->flashdata('pesan');
-if ($pesan) : ?>
-<div style="position:relative;z-index:100; padding:20px 20px 50px;background: white;width:40%; left:30%; border: 2px solid silver" class="kotakPesan">
-    <span style="position:absolute;right:0;" class="closePesan">X</span>
-    <center><i class="fas fa-3x fa-times-circle"></i></center>
-    <center>
-        <p style="color:blue;font-size:20px;font-weight:500"><?= $pesan; ?></p>
-    </center>
-
-</div>
-<?php endif; ?>
-
 <form method="post" action="<?= base_url('Penjual/insertProduk'); ?>" enctype="multipart/form-data" id="formProduk2">
     <div class="row formProduk">
         <div class="col-lg-12" id="formProduk">
