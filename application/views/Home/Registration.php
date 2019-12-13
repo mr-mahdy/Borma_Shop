@@ -1,17 +1,45 @@
+<!-- Daftar Akun Pembeli -->
 <div class="slide animation__style10 bg-image--7 fullscreen align__center--left">
     <div class="container">
         <div class="row indexPenjual">
-            <div class="col-lg-4">
-                <div class="slider__content">
-                    <div class="contentbox">
-                        <h5 style="margin-top:50px;font-weight:bolder">Ayo Mulai <span style="color:rgb(95, 220, 45)">Jualan</span> Sekarang Juga <span style="color:rgb(95, 220, 45)">Disini</span></h5>
-                        <hr style="width:100px;margin-left:0px;height:2px;background: rgb(95, 220, 45);box-shadow:none;margin-top:20px">
-                        <p style="margin-top:30px;text-align:justify;font-weight:500;font-size:16px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis incidunt quo consequuntur quasi itaque dolore. Obcaecati quos doloribus consectetur dolorum iusto aut officia cumque odit numquam alias! Itaque ipsum sapiente ipsam voluptas nesciunt, est ut ullam molestias illo quaerat iure culpa saepe, placeat odio nam aliquam natus autem eum sit!</p>
-                        <p style="text-align:justify;font-weight:500;font-size:16px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat voluptas incidunt exercitationem aspernatur facilis doloremque commodi eos consequuntur illo. Officiis repudiandae illo quidem fugit, veniam quod magni consequatur vero expedita!</p>
-                        <a class="shopbtn btnBesar" href="#" style="background: rgb(95, 220, 45);color:white; ">Jual Produk</a>
-                    </div>
+            <div class="col-lg-4 daftar">
+            <div class="my__account__wrapper">
+                <h3 class="account__title">Daftar Akun Pembeli</h3>
+                    <?php if ($this->session->flashdata('pesan')) : ?>
+                    <p class="text-danger"><?= $this->session->flashdata('pesan2'); ?></p>
+                    <?php endif; ?>
+                    <form action="<?= base_url('Auth/registration2'); ?>" method="post" id="daftarAkun">
+                        <div class="account__form">
+                            <div class="input__box">
+                                <label>Nama<span>*</span></label>
+                                <input type="text" name="name" id="namaPembeli" value="<?= set_value('name'); ?>">
+                                <small class="text-danger"><?= form_error('name'); ?></small>
+                            </div>
+                            <div class="input__box">
+                                <label>Email<span>*</span></label>
+                                <input type="email" name="email" id="emailD" value="<?= set_value('email'); ?>">
+                                <small class="text-danger"><?= form_error('email'); ?></small>
+
+                            </div>
+                            <div class="input__box">
+                                <label>Password<span>*</span></label>
+                                <input type="password" name="password" id="pass">
+                                <small class="text-danger"><?= form_error('password'); ?></small>
+                            </div>
+                            <div class="input__box">
+                                <label>Re-Password<span>*</span></label>
+                                <input type="password" name="password2" id="pass2">
+                            </div>
+                            <div class="form__btn">
+                                <button type="submit" id="btnDaftar">Daftar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+<!-- Akhir Daftar Akun Pembeli -->
+
+<!-- Login -->
             <div class="col-lg-4 login">
                 <div class="my__account__wrapper">
                     <h3 class="account__title">Login</h3>
@@ -42,13 +70,16 @@
                     </form>
                 </div>
             </div>
+<!-- Akhir Login -->
+
+<!-- Daftar Akun Penjual -->
             <div class="col-lg-4 daftar">
                 <div class="my__account__wrapper">
-                    <h3 class="account__title">Daftar Akun</h3>
+                    <h3 class="account__title">Daftar Akun Penjual</h3>
                     <?php if ($this->session->flashdata('pesan')) : ?>
                     <p class="text-danger"><?= $this->session->flashdata('pesan'); ?></p>
                     <?php endif; ?>
-                    <form action="<?= base_url('Auth/registration'); ?>" method="post" id="daftarAkun">
+                    <form action="<?= base_url('Auth/registration1'); ?>" method="post" id="daftarAkun">
                         <div class="account__form">
                             <div class="input__box">
                                 <label>Nama<span>*</span></label>

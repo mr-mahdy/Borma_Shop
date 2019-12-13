@@ -142,6 +142,22 @@
 										</div>
 									</div>
 								</div>
+								<?php elseif ($this->session->userdata('role_id') == 2) : ?>
+								<div class="switcher-currency">
+									<strong class="label switcher-label">
+									<span>Akun Pembeli</span>
+									</strong>
+									<div class="switcher-options">
+										<div class="switcher-currency-trigger">
+											<div class="setting__menu">
+												<span><a href="#">Profil Pembeli</a></span>
+												<span><a href="<?= base_url('Pembeli/index'); ?>">Dashboard</a></span>
+												<span><a href="#">Pengaturan Akun</a></span>
+												<span><a href="<?= base_url('Pembeli/logout'); ?>">Logout</a></span>
+											</div>
+										</div>
+									</div>
+								</div>
 								<?php else : ?>
 								<!-- Menu Akun Sebelum Login -->
 								<div class="switcher-currency">

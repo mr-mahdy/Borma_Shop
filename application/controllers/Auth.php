@@ -65,7 +65,7 @@ class Auth extends CI_Controller
         }
     }
 
-    public function registration()
+    public function registration1()
     {
         $this->form_validation->set_rules('name', 'Nama', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
@@ -74,6 +74,7 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['judul'] = "Akun Penjual | Penjual";
             $data['menuKategori'] = $this->mm->getMenuKategori();
+            $user = $this->db->get_where('user', ['role_id' => 1])->row_array();
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar');
             $this->load->view('Home/registration');
@@ -83,5 +84,25 @@ class Auth extends CI_Controller
             $this->hm->registration();
             redirect('Auth');
         }
+    }
+
+     public function registration2()
+    {
+        $this->form_validation->set_rules('name', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Re-Password', 'required|trim|min_length[8]|matches[password]');
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Akun Pembeli | Pembeli";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar');
+            $this->load->view('Home/registration');
+            $this->load->view('Templates/footer');
+        } else {
+            $this->session->set_flashdata('pesan2', 'Silahkan Verifikasi Email');
+            $this->hm->registration2();
+            redirect('Auth');
+        }  
     }
 }
