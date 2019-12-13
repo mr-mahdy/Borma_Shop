@@ -65,7 +65,7 @@
                                     <span>Remember me</span>
                                 </label>
                             </div>
-                            <a class="forget_pass" href="#">Lost your password?</a>
+                            <a class="forgot_pass" href="<?= base_url('auth/forgotpassword'); ?>">Lost your password?</a>
                         </div>
                     </form>
                 </div>
