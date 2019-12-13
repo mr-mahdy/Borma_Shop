@@ -49,7 +49,7 @@ class Auth extends CI_Controller
                         redirect('Penjual/index');
                     } else {
                         $this->session->set_userdata($data);
-                        redirect('Pembeli/index');
+                        redirect('Home/index');
                     }
                 } else {
                     $this->session->set_flashdata('pesanlogin', 'Password salah');
