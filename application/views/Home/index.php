@@ -67,7 +67,7 @@
 					<div class="product__content content--center">
 						<h4><a href="single-product.html"><?= $pb['name']; ?></a></h4>
 						<ul class="prize d-flex">
-							<li>Rp. <?= number_format($pb['price'], 0, ',', '.') ?></li>
+							<li>Rp. <?= number_format($pb['price'], 0, ',', '.') ?>  </li>
 						</ul>
 						<div class="action">
 							<div class="actions_inner">

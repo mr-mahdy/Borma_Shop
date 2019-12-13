@@ -26,8 +26,10 @@
                             <?php $jmlK++; ?>
                             <?php endif; ?>
                             <?php endforeach; ?>
-                            <li><a href="#"><?= $k['tipe_item']; ?> <span>(<?= $jmlK; ?>)</span></a></li>
+                            <?php $kp =$k['tipe_item']; ?>
+                            <li><a href="<?= base_url() ?>home/gridproduk/<?= $kp ?>"><?= $kp; ?> <span>(<?= $jmlK; ?>)</span></a></li>
                             <?php endforeach; ?>
+                        </ul>
                         </ul>
                     </aside>
                     <aside class="wedget__categories pro--range">
@@ -75,20 +77,21 @@
                 <div class="tab__container">
                     <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
                         <div class="row">
+                             <?php foreach ($produkKategori as $pk) :?>
                             <!-- Start Single Product -->
                             <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div class="product__thumb">
-                                    <a class="first__img" href="single-product.html"><img src="images/books/1.jpg" alt="product image"></a>
-                                    <a class="second__img animation1" href="single-product.html"><img src="images/books/2.jpg" alt="product image"></a>
+                                    <a class="first__img" href="<?= base_url("GridProduk/detailProduk/{$pk['id']}") ?>">
+                                        <img src="<?= base_url().'uploadImg/'.$pk['image'] ?>" alt="product image" height="250">
+                                    </a>
                                     <div class="hot__box">
-                                        <span class="hot-label">BEST SALLER</span>
+                                        <span class="hot-label">Baru</span>
                                     </div>
-                                </div>
+                                </div>          
                                 <div class="product__content content--center">
-                                    <h4><a href="single-product.html">robin parrish</a></h4>
+                                    <h4><a href="single-product.html"><?= $pk['name']; ?></a></h4>
                                     <ul class="prize d-flex">
-                                        <li>$35.00</li>
-                                        <li class="old_prize">$35.00</li>
+                                        <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
                                     </ul>
                                     <div class="action">
                                         <div class="actions_inner">
@@ -112,6 +115,7 @@
                                 </div>
                             </div>
                             <!-- End Single Product -->
+                            <?php endforeach; ?>
                         </div>
                         <ul class="wn__pagination">
                             <li class="active"><a href="#">1</a></li>

@@ -41,12 +41,12 @@ class Home extends CI_Controller
         $this->load->view('Templates/footer');
     }
 
-    public function gridProduk()
+    public function gridProduk($kategori)
     {
         $data['judul'] = "Produk | Borma Shop";
         $data['menuKategori'] = $this->mm->getMenuKategori();
         $data['allProduk'] = $this->hm->getAllProduk();
-        // $data['penjual'] = $this->hm->getPenjualById($idP);
+        $data['produkKategori'] = $this->hm->getProdukByKategori($kategori);
         $data['kategori'] = $this->mm->getMenuKategori();
         $this->load->view('Templates/header', $data);
         $this->load->view('Templates/topbar', $data);

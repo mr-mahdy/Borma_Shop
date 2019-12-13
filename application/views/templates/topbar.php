@@ -21,8 +21,9 @@
 						<li class="drop"><a href="!#">Kategori</a>
 							<div class="megamenu mega01">
 								<ul class="item item01">
-									<?php foreach ($menuKategori as $mk) : ?>
-									<li class="title"><a href="<?= base_url('home/gridproduk') ?>"><?= $mk['tipe_item']; ?></a></li>
+									<?php   foreach ($menuKategori as $mk) : ?>
+										<?php $k =$mk["tipe_item"]; ?>
+									<li class="title"><a href="<?= base_url() ?>home/gridproduk/<?= $k ?>"><?= $k; ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div>
