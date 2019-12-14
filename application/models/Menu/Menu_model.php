@@ -12,4 +12,11 @@ class Menu_model extends CI_Model
     {
         return $this->db->get_where('menu_penjual')->result_array();
     }
+
+    public function get_keyword($keyword){
+    	$this->db->select('*');
+    	$this->db->from('dbs_borma');
+    	$this->db->like('name', $keyword);
+    	return $this->db->get()->result();
+    }
 }

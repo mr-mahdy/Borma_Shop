@@ -6,19 +6,21 @@
 			<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 				<div class="logo">
 					<a href="<?= base_url('Home/index') ?>" title="Borma Shop">
-						B<span class="fas fa-store"></span>rma
+						B<span class="fas fa-store"></span>
 					</a>
 				</div>
 			</div>
 
 			<!-- Menu Kategori dan Sub Kategori -->
-
+			<!-- searching -->
 			<div class="col-lg-8 d-none d-lg-block">
-				<nav class="mainmenu__nav">
+				<br><br>
+				
+				<nav class="mainmenu__nav" style="display: inline; ">
 					<ul class="meninmenu d-flex justify-content-start">
 						<!-- Jika loginnya pembeli atau yang belum login tampilkan menu keranjang -->
 						<?php if ($this->session->userdata('role_id') == 2 || $this->session->userdata('role_id') == null) : ?>
-						<li class="drop"><a href="!#">Kategori</a>
+						<li class="drop"><a>Kategori!</a>
 							<div class="megamenu mega01">
 								<ul class="item item01">
 									<?php   foreach ($menuKategori as $mk) : ?>
@@ -31,6 +33,16 @@
 						<?php endif; ?>
 					</ul>
 				</nav>
+
+				<form action="<?= base_url('Home/search') ?>" method="post" style="margin-left: 200px; margin-top: -40px;">
+                    <div class="navbar-form" >
+                        <!-- <input style="width:300px" type="text" name="keyword" class="form-control" placeholder="Cari Produk" autocomplete="off" topbar="100">
+                     
+                        <button style="height: 50px" type="submit" class="btn btn-success" >Cari!</button>   -->
+                        <input style="width:300px; display: inline;" class="form-control mr-sm-2" type="text" name="keyword" placeholder="Cari Produk" aria-label="Search">
+    					<button class="btn btn-outline-success" style="height: 55px" type="submit">Search</button>
+                    </div>
+                </form>
 			</div>
 
 

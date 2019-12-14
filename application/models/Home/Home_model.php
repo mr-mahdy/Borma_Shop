@@ -76,10 +76,20 @@ class Home_model extends CI_Model
         }
         elseif ($kategori == "Sport%20dan%20Stationary") {
             return $this->db->get_where('daftar_produk', ['category' => "Sport dan Stationary"] )->result_array();
+        } 
+        elseif ($kategori == "Elektronik") {
+            return $this->db->get_where('daftar_produk', ['category' => "Elektronik"] )->result_array();
         }
         else {
-            return $this->db->get_where('daftar_produk', ['category' => $kategori] )->result_array();
+            return $this->db->get_where('daftar_produk')->result_array();
         }
+        
+    }
+
+    public function getProdukBySearch() {
+        $keyword = $this->input->post('keyword');
+         $query = $this->db->query("SELECT * FROM daftar_produk WHERE name LIKE '%$keyword%'");
+        return $query->result_array();
         
     }
 }

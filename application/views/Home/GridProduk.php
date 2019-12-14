@@ -1,4 +1,5 @@
 <!-- Start Shop Page -->
+
 <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
     <div class="container mt--50">
         <div class="row">
@@ -6,11 +7,7 @@
                 <p>Home / Produk</p>
             </div>
             <div class="col-lg-4">
-                <form action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cari Produk">
-                    </div>
-                </form>
+                
             </div>
         </div>
         <div class="row mt--20">
@@ -62,7 +59,7 @@
                                 <a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
                                 <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
                             </div>
-                            <p>Hasil Pencarian : 40</p>
+                            <p>Hasil Pencarian : <?= count($produkKategori); ?></p>
                             <div class="orderby__wrapper">
                                 <span>Sort berdasarkan</span>
                                 <select class="shot__byselect">
@@ -127,14 +124,15 @@
                     </div>
                     <div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">
                         <div class="list__view__wrapper">
+                            <?php foreach ($produkKategori as $pk) :?>
                             <!-- Start Single Product -->
                             <div class="list__view">
                                 <div class="thumb">
-                                    <a class="first__img" href="single-product.html"><img src="images/product/1.jpg" alt="product images"></a>
-                                    <a class="second__img animation1" href="single-product.html"><img src="images/product/2.jpg" alt="product images"></a>
+                                    <a class="first__img" href="<?= base_url("GridProduk/detailProduk/{$pk['id']}") ?>"><img src="<?= base_url().'uploadImg/'.$pk['image'] ?>" alt="product images"></a>
+                                    
                                 </div>
                                 <div class="content">
-                                    <h2><a href="single-product.html">Ali Smith</a></h2>
+                                    <h2><a href="single-product.html"><?= $pk['name']; ?></a></h2>
                                     <ul class="rating d-flex">
                                         <li class="on"><i class="fa fa-star-o"></i></li>
                                         <li class="on"><i class="fa fa-star-o"></i></li>
@@ -144,10 +142,10 @@
                                         <li><i class="fa fa-star-o"></i></li>
                                     </ul>
                                     <ul class="prize__box">
-                                        <li>$111.00</li>
-                                        <li class="old__prize">$220.00</li>
+                                        <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
+                                        
                                     </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                                    <p><?= $pk['description'] ?></p>
                                     <ul class="cart__action d-flex">
                                         <li class="cart"><a href="cart.html">Add to cart</a></li>
                                         <li class="wishlist"><a href="cart.html"></a></li>
@@ -157,6 +155,8 @@
                                 </div>
                             </div>
                             <!-- End Single Product -->
+                        <?php endforeach; ?>
+
                         </div>
                     </div>
                 </div>
