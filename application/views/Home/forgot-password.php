@@ -1,26 +1,46 @@
-<div class="col-lg-4 login">
-                <div class="my__account__wrapper">
-                    <h3 class="account__title">Forget your Password ? </h3>
-                    <?php if ($this->session->flashdata('pesanlogin')) : ?>
-                    <p class="text-danger"><?= $this->session->flashdata('pesanlogin'); ?></p>
-                    <?php endif; ?>
-                    <form action="<?= base_url('Auth/forgotpassword'); ?>" method="post">
-                        <div class="account__form">
-                            <div class="input__box">
-                                <label>Email<span>*</span></label>
-                                <input type="email" name="emaillogin" value="<?= set_value('emaillogin'); ?>">
-                                <small class="text-danger"><?= form_error('emaillogin'); ?></small>
-                            </div>
-                            
-                            <div class="form__btn">
-                                <button type="submit">Reset Password</button>
-                            </div>   
-                    </form>
-                    <hr>
-                    <div class="text-center">
-                    <a href="small" href="<?= base_url('Home'); ?>">Back to login</a>
-                    </div>
+<div class="container">
+
+<!-- Outer Row -->
+<div class="row justify-content-center">
+
+  <div class="col-lg-7">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Forgot Your Password</h1>
+              </div>
+
+                <?= $this->session->flashdata('message');?>
+
+              <form class="user" method="post" action ="<?= base_url('auth/forgotpassword'); ?>">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address..." value="<?= set_value('emaillogin'); ?>">
+                  <?= form_error('emaillogin', '<small class="text-danger pl-3">','</small>'); ?>  
                 </div>
-            </div>
+                
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                  Reset Password
+                </button>
+                
             
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="<?= base_url('auth');?>">Back To Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
 </div>
