@@ -176,5 +176,53 @@ class Auth extends CI_Controller
         }
         
     }
+
+    public function resetPassword()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email ])->row_array();
+        if ($user) {
+           $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+            if ($user_token) {
+               $this->session->set_userdata('reset_email', $email);
+               $this->changePassword(); 
+            }else{
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Reset Password Failed ! wrong token</div>');
+                redirect('auth');
+            }
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Reset Password Failed ! wrong email</div>');
+            redirect('auth');
+        }
+    }
+
+    public function changePassword()
+    {
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[3]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|min_length[3]|matches[password1]');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Change Password';
+            $this->load->view('templates/header', $data);
+            $this->load->view('Home/change-password');
+            $this->load->view('templates/footer');
+        }else{
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('password', $password);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->unset_userdata('rest_email');
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Password has been change ! please login</div>');
+            redirect('auth');
+        }
         
+    }
 }
+
+
+        
+
