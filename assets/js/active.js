@@ -70,6 +70,8 @@
 	function stickyHeader() {
 		$(window).on('scroll', function () {
 			var sticky_menu = $('.sticky__header');
+			var search = $('.form');
+			var kategori = $('.meninmenu');
 			var pos = sticky_menu.position();
 			if (sticky_menu.length) {
 				var windowpos = sticky_menu.top;
@@ -77,8 +79,12 @@
 					var windowpos = $(window).scrollTop();
 					if (windowpos > pos.top + 250) {
 						sticky_menu.addClass('is-sticky');
+						search.addClass('search');
+						kategori.addClass('kategori');
 					} else {
 						sticky_menu.removeClass('is-sticky');
+						search.removeClass('search');
+						kategori.removeClass('kategori');
 					}
 				});
 			}

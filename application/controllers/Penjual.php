@@ -188,7 +188,7 @@ class Penjual extends CI_Controller
             $this->form_validation->set_rules('password', 'Password', 'required|trim');
             $password = $this->input->post('password');
             if ($this->form_validation->run() == false) {
-                $this->editProfil();
+                redirect('penjual/editProfil');
             } else {
                 if ($this->_validationPassword($password)) {
                     $id = $this->pm->getIdPenjual();

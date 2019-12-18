@@ -25,7 +25,7 @@
                 <th>Aksi</th>
             </tr>
             <?php $i = 1; ?>
-            <?php if (!isset($allProduk)) : ?>
+            <?php if (!empty($allProduk)) : ?>
                 <?php foreach ($allProduk as $produk) : ?>
                     <tr>
                         <td><?= $i++ ?></td>

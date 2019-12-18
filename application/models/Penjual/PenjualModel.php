@@ -64,8 +64,6 @@ class PenjualModel extends CI_Model
     {
         $config['upload_path'] = './uploadImg';
         $config['allowed_types'] = 'png|jpg|jpeg';
-        $config['min_width']            = 600;
-        $config['min_height']           = 400;
         $this->load->library('upload', $config);
         $gmb = $this->upload->do_upload('image') . $this->upload->data('file_name');
         return substr($gmb, 1);

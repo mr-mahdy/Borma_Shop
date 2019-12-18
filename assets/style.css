@@ -2682,6 +2682,7 @@ Header Styles
 	align-items: center;
 	-ms-grid-row-align: stretch;
 	align-self: stretch;
+	margin-top: -15px;
 }
 
 .mainmenu__nav .meninmenu li {
@@ -2703,6 +2704,26 @@ Header Styles
 
 .mainmenu__nav .meninmenu li a:hover {
 	color: rgb(95, 220, 45);
+}
+
+.is-sticky .kategori {
+	margin-top: -30px;
+}
+
+.form {
+	visibility: hidden;
+}
+
+.form button {
+	margin-left: -12px;
+	height: 38px;
+	margin-top: -4px;
+}
+
+.is-sticky .search {
+	visibility: visible;
+	margin-left: 200px;
+	margin-top: -32px;
 }
 
 .is-sticky .mainmenu__nav .meninmenu li a {
