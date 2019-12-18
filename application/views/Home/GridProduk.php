@@ -7,7 +7,10 @@
                 <p>Home / Produk</p>
             </div>
             <div class="col-lg-4">
-                
+                <form action="<?= base_url('Home/search') ?>" method="post">
+                    <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Cari Produk" aria-label="Search">
+                    <button class="btn btn-success" type="submit" style="margin-left:370px;margin-top:-62px;height: 38px;">Search</button>
+                </form>
             </div>
         </div>
         <div class="row mt--20">
@@ -17,14 +20,14 @@
                         <h3 class="wedget__title">Kategori Produk</h3>
                         <ul>
                             <?php foreach ($kategori as $k) : ?>
-                            <?php $jmlK = 0; ?>
-                            <?php foreach ($allProduk as $produk) : ?>
-                            <?php if ($k['tipe_item'] == $produk['category']) : ?>
-                            <?php $jmlK++; ?>
-                            <?php endif; ?>
-                            <?php endforeach; ?>
-                            <?php $kp =$k['tipe_item']; ?>
-                            <li><a href="<?= base_url() ?>home/gridproduk/<?= $kp ?>"><?= $kp; ?> <span>(<?= $jmlK; ?>)</span></a></li>
+                                <?php $jmlK = 0; ?>
+                                <?php foreach ($allProduk as $produk) : ?>
+                                    <?php if ($k['tipe_item'] == $produk['category']) : ?>
+                                        <?php $jmlK++; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <?php $kp = $k['tipe_item']; ?>
+                                <li><a href="<?= base_url() ?>home/gridproduk/<?= $kp ?>"><?= $kp; ?> <span>(<?= $jmlK; ?>)</span></a></li>
                             <?php endforeach; ?>
                         </ul>
                         </ul>
@@ -64,7 +67,7 @@
                                 <span>Sort berdasarkan</span>
                                 <select class="shot__byselect">
                                     <?php foreach ($kategori as $k) : ?>
-                                    <option><a href="#"><?= $k['tipe_item']; ?></a></option>
+                                        <option><a href="#"><?= $k['tipe_item']; ?></a></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -74,44 +77,44 @@
                 <div class="tab__container">
                     <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
                         <div class="row">
-                             <?php foreach ($produkKategori as $pk) :?>
-                            <!-- Start Single Product -->
-                            <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-                                <div class="product__thumb">
-                                    <a class="first__img" href="<?= base_url("GridProduk/detailProduk/{$pk['id']}") ?>">
-                                        <img src="<?= base_url().'uploadImg/'.$pk['image'] ?>" alt="product image" height="250">
-                                    </a>
-                                    <div class="hot__box">
-                                        <span class="hot-label">Baru</span>
+                            <?php foreach ($produkKategori as $pk) : ?>
+                                <!-- Start Single Product -->
+                                <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="product__thumb">
+                                        <a class="first__img" href="<?= base_url("Home/detailProduk/{$pk['id']}") ?>">
+                                            <img src="<?= base_url() . 'uploadImg/' . $pk['image'] ?>" alt="product image" height="250">
+                                        </a>
+                                        <div class="hot__box">
+                                            <span class="hot-label">Baru</span>
+                                        </div>
                                     </div>
-                                </div>          
-                                <div class="product__content content--center">
-                                    <h4><a href="single-product.html"><?= $pk['name']; ?></a></h4>
-                                    <ul class="prize d-flex">
-                                        <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
-                                    </ul>
-                                    <div class="action">
-                                        <div class="actions_inner">
-                                            <ul class="add_to_links">
-                                                <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                                <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
-                                                <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                                    <div class="product__content content--center">
+                                        <h4><a href="single-product.html"><?= $pk['name']; ?></a></h4>
+                                        <ul class="prize d-flex">
+                                            <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
+                                        </ul>
+                                        <div class="action">
+                                            <div class="actions_inner">
+                                                <ul class="add_to_links">
+                                                    <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                    <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
+                                                    <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
+                                                    <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product__hover--content">
+                                            <ul class="rating d-flex">
+                                                <li class="on"><i class="fa fa-star-o"></i></li>
+                                                <li class="on"><i class="fa fa-star-o"></i></li>
+                                                <li class="on"><i class="fa fa-star-o"></i></li>
+                                                <li><i class="fa fa-star-o"></i></li>
+                                                <li><i class="fa fa-star-o"></i></li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="product__hover--content">
-                                        <ul class="rating d-flex">
-                                            <li class="on"><i class="fa fa-star-o"></i></li>
-                                            <li class="on"><i class="fa fa-star-o"></i></li>
-                                            <li class="on"><i class="fa fa-star-o"></i></li>
-                                            <li><i class="fa fa-star-o"></i></li>
-                                            <li><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
                                 </div>
-                            </div>
-                            <!-- End Single Product -->
+                                <!-- End Single Product -->
                             <?php endforeach; ?>
                         </div>
                         <ul class="wn__pagination">
@@ -124,38 +127,38 @@
                     </div>
                     <div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">
                         <div class="list__view__wrapper">
-                            <?php foreach ($produkKategori as $pk) :?>
-                            <!-- Start Single Product -->
-                            <div class="list__view">
-                                <div class="thumb">
-                                    <a class="first__img" href="<?= base_url("GridProduk/detailProduk/{$pk['id']}") ?>"><img src="<?= base_url().'uploadImg/'.$pk['image'] ?>" alt="product images"></a>
-                                    
-                                </div>
-                                <div class="content">
-                                    <h2><a href="single-product.html"><?= $pk['name']; ?></a></h2>
-                                    <ul class="rating d-flex">
-                                        <li class="on"><i class="fa fa-star-o"></i></li>
-                                        <li class="on"><i class="fa fa-star-o"></i></li>
-                                        <li class="on"><i class="fa fa-star-o"></i></li>
-                                        <li class="on"><i class="fa fa-star-o"></i></li>
-                                        <li><i class="fa fa-star-o"></i></li>
-                                        <li><i class="fa fa-star-o"></i></li>
-                                    </ul>
-                                    <ul class="prize__box">
-                                        <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
-                                        
-                                    </ul>
-                                    <p><?= $pk['description'] ?></p>
-                                    <ul class="cart__action d-flex">
-                                        <li class="cart"><a href="cart.html">Add to cart</a></li>
-                                        <li class="wishlist"><a href="cart.html"></a></li>
-                                        <li class="compare"><a href="cart.html"></a></li>
-                                    </ul>
+                            <?php foreach ($produkKategori as $pk) : ?>
+                                <!-- Start Single Product -->
+                                <div class="list__view">
+                                    <div class="thumb">
+                                        <a class="first__img" href="<?= base_url("GridProduk/detailProduk/{$pk['id']}") ?>"><img src="<?= base_url() . 'uploadImg/' . $pk['image'] ?>" alt="product images"></a>
 
+                                    </div>
+                                    <div class="content">
+                                        <h2><a href="single-product.html"><?= $pk['name']; ?></a></h2>
+                                        <ul class="rating d-flex">
+                                            <li class="on"><i class="fa fa-star-o"></i></li>
+                                            <li class="on"><i class="fa fa-star-o"></i></li>
+                                            <li class="on"><i class="fa fa-star-o"></i></li>
+                                            <li class="on"><i class="fa fa-star-o"></i></li>
+                                            <li><i class="fa fa-star-o"></i></li>
+                                            <li><i class="fa fa-star-o"></i></li>
+                                        </ul>
+                                        <ul class="prize__box">
+                                            <li>Rp. <?= number_format($pk['price'], 0, ',', '.') ?></li>
+
+                                        </ul>
+                                        <p><?= $pk['description'] ?></p>
+                                        <ul class="cart__action d-flex">
+                                            <li class="cart"><a href="cart.html">Add to cart</a></li>
+                                            <li class="wishlist"><a href="cart.html"></a></li>
+                                            <li class="compare"><a href="cart.html"></a></li>
+                                        </ul>
+
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- End Single Product -->
-                        <?php endforeach; ?>
+                                <!-- End Single Product -->
+                            <?php endforeach; ?>
 
                         </div>
                     </div>

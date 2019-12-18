@@ -22,7 +22,7 @@
                             <ul class="mainmenu d-flex justify-content-center">
                                 <li><a href="<?= base_url('Home/index'); ?>">Home</a></li>
                                 <li><a href="<?= base_url('Auth/index'); ?>">Login</a></li>
-                                <li><a href="index.html">Semua Produk</a></li>
+                                <li><a href="<?= base_url('Home/gridproduk/0'); ?>">Semua Produk</a></li>
                             </ul>
                         </div>
                     </div>

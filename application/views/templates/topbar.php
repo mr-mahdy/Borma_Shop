@@ -143,9 +143,7 @@
 										<div class="switcher-options">
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
-													<span><a href="#">Profil Penjual</a></span>
 													<span><a href="<?= base_url('Penjual/index'); ?>">Dashboard</a></span>
-													<span><a href="#">Pengaturan Akun</a></span>
 													<span><a href="<?= base_url('Penjual/logout'); ?>">Logout</a></span>
 												</div>
 											</div>
@@ -160,8 +158,6 @@
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
 													<span><a href="#">Profil Pembeli</a></span>
-													<span><a href="<?= base_url('Pembeli/index'); ?>">Dashboard</a></span>
-													<span><a href="#">Pengaturan Akun</a></span>
 													<span><a href="<?= base_url('Pembeli/logout'); ?>">Logout</a></span>
 												</div>
 											</div>

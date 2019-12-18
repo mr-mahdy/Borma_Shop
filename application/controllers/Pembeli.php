@@ -12,7 +12,7 @@ class Pembeli extends CI_Controller
 
     public function index()
     {
-        return redirect('Auth/index');
+        return redirect('Home/index');
     }
 
     public function logout()

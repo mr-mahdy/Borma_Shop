@@ -25,8 +25,10 @@ class Auth extends CI_Controller
             } else {
                 $this->_login();
             }
-        } else {
+        } else if ($this->session->userdata('role_id') == 1) {
             redirect('Penjual/index');
+        } else if ($this->session->userdata('role_id') == 2) {
+            redirect('Home/index');
         }
     }
 
@@ -47,7 +49,7 @@ class Auth extends CI_Controller
                     if ($data['role_id'] == 1) {
                         $this->session->set_userdata($data);
                         redirect('Penjual/index');
-                    } else {
+                    } else if ($data['role_id'] == 2) {
                         $this->session->set_userdata($data);
                         redirect('Home/index');
                     }

@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row indexPenjual">
             <div class="col-lg-4 daftar">
-            <div class="my__account__wrapper">
-                <h3 class="account__title">Daftar Akun Pembeli</h3>
-                    <?php if ($this->session->flashdata('pesan')) : ?>
-                    <p class="text-danger"><?= $this->session->flashdata('pesan2'); ?></p>
+                <div class="my__account__wrapper">
+                    <h3 class="account__title">Daftar Akun Pembeli</h3>
+                    <?php if ($this->session->flashdata('pesan2')) : ?>
+                        <p class="text-danger"><?= $this->session->flashdata('pesan2'); ?></p>
                     <?php endif; ?>
                     <form action="<?= base_url('Auth/registration2'); ?>" method="post" id="daftarAkun">
                         <div class="account__form">
@@ -37,14 +37,14 @@
                     </form>
                 </div>
             </div>
-<!-- Akhir Daftar Akun Pembeli -->
+            <!-- Akhir Daftar Akun Pembeli -->
 
-<!-- Login -->
+            <!-- Login -->
             <div class="col-lg-4 login">
                 <div class="my__account__wrapper">
                     <h3 class="account__title">Login</h3>
                     <?php if ($this->session->flashdata('pesanlogin')) : ?>
-                    <p class="text-danger"><?= $this->session->flashdata('pesanlogin'); ?></p>
+                        <p class="text-danger"><?= $this->session->flashdata('pesanlogin'); ?></p>
                     <?php endif; ?>
                     <form action="<?= base_url('Auth/index'); ?>" method="post">
                         <div class="account__form">
@@ -62,22 +62,22 @@
                                 <button type="submit">Login</button>
                                 <label class="label-for-checkbox">
                                     <input id="rememberme" class="input-checkbox" name="rememberme" value="forever" type="checkbox">
-                                    <span>Remember me</span>
+                                    <span>Ingatkan saya</span>
                                 </label>
                             </div>
-                            <a class="forgot_pass" href="<?= base_url('auth/forgotpassword'); ?>">Lost your password?</a>
+                            <a class="forgot_pass" href="<?= base_url('auth/forgotpassword'); ?>">Lupa password?</a>
                         </div>
                     </form>
                 </div>
             </div>
-<!-- Akhir Login -->
+            <!-- Akhir Login -->
 
-<!-- Daftar Akun Penjual -->
+            <!-- Daftar Akun Penjual -->
             <div class="col-lg-4 daftar">
                 <div class="my__account__wrapper">
                     <h3 class="account__title">Daftar Akun Penjual</h3>
                     <?php if ($this->session->flashdata('pesan')) : ?>
-                    <p class="text-danger"><?= $this->session->flashdata('pesan'); ?></p>
+                        <p class="text-danger"><?= $this->session->flashdata('pesan'); ?></p>
                     <?php endif; ?>
                     <form action="<?= base_url('Auth/registration1'); ?>" method="post" id="daftarAkun">
                         <div class="account__form">
