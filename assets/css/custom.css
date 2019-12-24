@@ -489,3 +489,9 @@ input[type=number]::-webkit-outer-spin-button {
 .product__info__main h1 {
 	text-transform: uppercase;
 }
+
+/* notif data pembeli*/
+#datapembeli li{
+	font-size: 10px;
+	text-align: left;
+}
