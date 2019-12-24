@@ -95,4 +95,13 @@ class Home_model extends CI_Model
         $query = $this->db->query("SELECT * FROM daftar_produk WHERE name LIKE '%$keyword%'");
         return $query->result_array();
     }
+
+    public function getProdukByPrice()
+    {
+        $pecah = explode(" ", $this->input->post('filter-price'));
+        $priceMin = $pecah[1];
+        $priceMax = $pecah[4];
+        $query = $this->db->query("SELECT * FROM daftar_produk WHERE price >= $priceMin AND price <= $priceMax");
+        return $query->result_array();
+    }
 }

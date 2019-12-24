@@ -83,4 +83,18 @@ class Home extends CI_Controller
         $this->load->view('Home/GridProduk', $data);
         $this->load->view('Templates/footer');
     }
+
+    public function filter()
+    {
+        $data['judul'] = "Produk | Borma Shop";
+        $data['kategori'] = $this->mm->getMenuKategori();
+        $data['menuKategori'] = $this->mm->getMenuKategori();
+        $data['allProduk'] = $this->hm->getAllProduk();
+        $data['pembeli'] = $this->pm->getPembeliBySession();
+        $data['produkKategori'] = $this->hm->getProdukByPrice();
+        $this->load->view('Templates/header', $data);
+        $this->load->view('Templates/topbar', $data);
+        $this->load->view('Home/GridProduk', $data);
+        $this->load->view('Templates/footer');
+    }
 }

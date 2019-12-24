@@ -33,22 +33,22 @@
                         </ul>
                     </aside>
                     <aside class="wedget__categories pro--range">
-                        <h3 class="wedget__title">Filter by price</h3>
+                        <h3 class="wedget__title">Filter Berdasarkan Harga</h3>
                         <div class="content-shopby">
                             <div class="price_filter s-filter clear">
-                                <form action="#" method="GET">
-                                    <div id="slider-range"></div>
-                                    <div class="slider__range--output">
-                                        <div class="price__output--wrap">
+                                <div id="slider-range"></div>
+                                <div class="slider__range--output">
+                                    <div class="price__output--wrap">
+                                        <form method="post" action="<?= base_url('Home/filter') ?>">
                                             <div class="price--output">
-                                                <span>Price :</span><input type="text" id="amount" readonly="">
+                                                <span>Harga : </span><input type="text" id="amount" name="filter-price">
                                             </div>
                                             <div class="price--filter">
-                                                <a href="#">Filter</a>
+                                                <button type="submit">Filter</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </aside>
