@@ -43,7 +43,7 @@
                                 <span>Jumlah</span>
                                 <input id="qty" class="input-text qty" name="qty" min="<?= $produk['min_order'] ?>" value="<?= $produk['min_order'] ?>" title="Qty" type="number">
                                 <div class="addtocart__actions">
-                                    <button class="tocart" type="submit" title="Tambah Ke Keranjang">Tambah</button>
+                                    <a class="tocart btn btn-success" href="<?= base_url('keranjang/addKeranjang/') . $produk['id'] ?>" title="Tambah Ke Keranjang">Tambah</a>
                                 </div>
                                 <div class="product-addto-links clearfix">
                                     <a class="wishlist" href="#"></a>
@@ -228,7 +228,7 @@
                                             <div class="action">
                                                 <div class="actions_inner">
                                                     <ul class="add_to_links">
-                                                        <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                        <li><a class="cart" href="<?= base_url('keranjang/addKeranjang/') . $pb['id'] ?>"><i class="bi bi-shopping-bag4"></i></a></li>
                                                         <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
                                                     </ul>
                                                 </div>

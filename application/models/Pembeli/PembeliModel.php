@@ -26,46 +26,32 @@ class PembeliModel extends CI_Model
     {
         $name = $this->input->post('name');
         $email = $this->input->post('email');
+        $jk = $this->input->post('jenis_kelamin');
+        $tgl_lhr = $this->input->post('tgl_lhr');
+        $telepon = $this->input->post('telepon');
+        $alamat = $this->input->post('alamat');
 
-        $data = [
-            'name'  => $name,
-             'email' => $email];
-
-
-        $this->db->update('user', $data, ['id' => $id]);
+        $query = "UPDATE user, pembeli SET name = '$name', email = '$email', jenis_kelamin = '$jk', tgl_lhr = '$tgl_lhr', telepon = '$telepon', alamat = '$alamat'  WHERE pembeli . id = user . id_pembeli AND user . id = $id";
+        $this->db->query($query);
     }
 
-    public function getIdPembeli()
+    public function getProfilPembeli($email)
     {
+        $query = "SELECT * FROM user 
+         JOIN pembeli ON pembeli . id = user . id_pembeli WHERE email = '$email'";
 
-
-        $query = "SELECT pembeli . id, pembeli . jenis_kelamin, pembeli . tgl_lhr, 
-         pembeli . telepon,  pembeli . alamat, user . user FROM pembeli 
-         JOIN user ON pembeli . id_pembeli = user . id ";
-        
-        return $this->db->query($query)->result_array();
-
-
-        // $data = [
-        //     'email' => $this->session->userdata('email'),
-        //     'role_id' => $this->session->userdata('role_id')
-        // ];
-        // $this->db->select('user.*, pembeli.*');
-        // $this->db->from('user');
-        // $this->db->get_where('user', $data);
-        // $this->db->join('pembeli', 'user.id_pembeli = pembeli.id');
-        // $query = $this->db->get();
-        // return $query->result_array();
-        
-        // $getId = $getPembeli->row('id');
-        // if ($getPembeli->num_rows() > 0) {
-        //     return $getId;
-        // } else {
-        //     return false;
-        // }
+        return $this->db->query($query)->row_array();
     }
 
-    
+    public function getIdPembeli($email)
+    {
+        $query = "SELECT id FROM user 
+          WHERE email = '$email'";
+
+        return $this->db->query($query)->row_array()['id'];
+    }
+
+
     public function getPembeliBySession()
     {
         $data = [
@@ -81,4 +67,3 @@ class PembeliModel extends CI_Model
         }
     }
 }
-

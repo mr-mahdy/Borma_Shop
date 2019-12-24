@@ -158,15 +158,14 @@
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
 													<span><a href="#">Profil Pembeli</a></span>
-													<div class=datapembeli id=datapembeli>
+
 													<ul>
-                    								<li>Nama : <?= $pembeli['name']; ?></li>
-                  									<li>Email : <?= $pembeli['email']; ?></li>
-                  									<li>Tanggal Dibuat : <?= $pembeli['date_created']; ?></li>
-													  </ul>
-													  </div>
-												<span><a href="<?= base_url('Pembeli/index'); ?>">Pengaturan Akun</a></span>
-												<span><a href="<?= base_url('Pembeli/logout'); ?>">Logout</a></span>
+														<li>Nama : <?= $pembeli['name']; ?></li>
+														<li>Email : <?= $pembeli['email']; ?></li>
+														<li>Tanggal Dibuat : <?= $pembeli['date_created']; ?></li>
+													</ul>
+													<span><a href="<?= base_url('Pembeli/editProfil'); ?>">Edit Profil</a></span>
+													<span><a href="<?= base_url('Pembeli/logout'); ?>">Logout</a></span>
 												</div>
 											</div>
 										</div>

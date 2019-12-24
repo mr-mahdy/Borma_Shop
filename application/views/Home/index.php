@@ -53,7 +53,7 @@
 		<div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
 			<!-- Start Single Product -->
 			<?php foreach ($produkBaru as $pb) : ?>
-				<?php if (date('m', $pb['date_upload']) >= (date('m', time()) - 2)) : ?>
+				<?php if (date('m', $pb['date_upload']) >= (date('m', time()) - 1)) : ?>
 					<div class="product product__style--3">
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="product__thumb">
@@ -72,7 +72,7 @@
 								<div class="action">
 									<div class="actions_inner">
 										<ul class="add_to_links">
-											<li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+											<li><a class="cart" href="<?= base_url('keranjang/addKeranjang/') . $pb['id'] ?>"><i class="bi bi-shopping-bag4"></i></a></li>
 											<li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
 										</ul>
 									</div>
@@ -132,7 +132,7 @@
 								<div class="action">
 									<div class="actions_inner">
 										<ul class="add_to_links">
-											<li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+											<li><a class="cart" href="<?= base_url('keranjang/addKeranjang/') . $pb['id'] ?>"><i class="bi bi-shopping-bag4"></i></a></li>
 											<li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
 										</ul>
 									</div>

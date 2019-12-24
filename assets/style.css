@@ -2514,6 +2514,12 @@ Elements Styles
 	font-size: 12px;
 }
 
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .setting__menu ul li {
+	text-align: left;
+	font-size: 12px;
+}
+
 /*******************
 Blocks Styles
 ********************/

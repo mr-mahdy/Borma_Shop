@@ -1,13 +1,13 @@
-form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="multipart/form-data" id="formProduk2">
+<form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="multipart/form-data" id="formProduk2">
     <div class="row formProduk mt--50">
         <div class="col-lg-12">
             <?php if ($this->session->flashdata('pesan')) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?= $this->session->flashdata('pesan'); ?></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><?= $this->session->flashdata('pesan'); ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             <?php endif; ?>
         </div>
     </div>
@@ -20,7 +20,7 @@ form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="mu
                     <label for="name">Nama Pembeli</label>
                 </div>
                 <div class="col-lg-4">
-                    <input type="text" name="name" id="name" class="form-control" value="<?= $pembeli['name'] ?>">
+                    <input type="text" name="name" id="name" class="form-control" value="<?= $pembeli['name']; ?>">
                     <small class="text-danger"><?= form_error('name'); ?></small>
                 </div>
             </div>
@@ -45,13 +45,21 @@ form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="mu
             </div>
             <div class="row form-group">
                 <div class="col-lg-2">
-                <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
                 </div>
                 <div class="col-lg-7">
-                <select name="jenis_kelamin" id="jenis_kelamin" style="display:block;margin-left:3px;" class="form-control">
+                    <select name="jenis_kelamin" id="jenis_kelamin" style="display:block;margin-left:3px;" class="form-control">
                         <option disabled selected>Pilih jenis kelamin</option>
-                        <option value="P">P</option>
-                        <option value="L">L</option>
+                        <?php if ($pembeli['jenis_kelamin'] == 'P') : ?>
+                            <option value="P" selected>P</option>
+                            <option value="L">L</option>
+                        <?php elseif ($pembeli['jenis_kelamin'] == 'L') : ?>
+                            <option value="P">P</option>
+                            <option value="L" selected>L</option>
+                        <?php else : ?>
+                            <option value="P">P</option>
+                            <option value="L">L</option>
+                        <?php endif; ?>
                     </select>
                 </div>
             </div>
@@ -78,7 +86,7 @@ form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="mu
                     <label for="alamat">Alamat</label>
                 </div>
                 <div class="col-lg-4">
-                    <ttextarea name="alamat" id="alamat" class="form-control" value="<?= $pembeli['alamat'] ?>"></textarea>
+                    <textarea name="alamat" id="alamat" class="form-control"><?= $pembeli['alamat'] ?></textarea>
                     <small class="text-danger"><?= form_error('alamat'); ?></small>
                 </div>
             </div>
@@ -87,7 +95,7 @@ form method="post" action="<?= base_url('Pembeli/updateProfil'); ?>" enctype="mu
     <div class="row btnProduk">
         <div class="col-lg-10"></div>
         <div class="col-lg-2">
-            <a href="<?= base_url('Pembeli/index'); ?>" class="btn">Batal</a>
+            <a href="<?= base_url('Home/index'); ?>" class="btn">Batal</a>
             <button type="submit" class="btn" id="simpan">Simpan</button>
         </div>
     </div>

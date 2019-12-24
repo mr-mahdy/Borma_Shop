@@ -96,7 +96,7 @@
                                         <div class="action">
                                             <div class="actions_inner">
                                                 <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                    <li><a class="cart" href="<?= base_url('keranjang/addKeranjang/') . $pk['id'] ?>"><i class="bi bi-shopping-bag4"></i></a></li>
                                                     <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
                                                     <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
                                                     <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
@@ -150,7 +150,7 @@
                                         </ul>
                                         <p><?= $pk['description'] ?></p>
                                         <ul class="cart__action d-flex">
-                                            <li class="cart"><a href="cart.html">Add to cart</a></li>
+                                            <li class="cart"><a href="<?= base_url('keranjang/addKeranjang/') . $pk['id'] ?>">Add to cart</a></li>
                                             <li class="wishlist"><a href="cart.html"></a></li>
                                             <li class="compare"><a href="cart.html"></a></li>
                                         </ul>

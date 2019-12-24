@@ -10,8 +10,7 @@ class Home extends CI_Controller
         $this->load->model('Pembeli/PembeliModel', 'pm');
         $this->load->model('Menu/Menu_model', 'mm');
         $this->load->library('form_validation');
-    
- }
+    }
 
     public function index()
     {
@@ -25,15 +24,15 @@ class Home extends CI_Controller
             $this->load->view('Home/index', $data);
             $this->load->view('Templates/footer');
         } else {
-        
-        $data['judul'] = "Home | Borma Shop";
-        $data['menuKategori'] = $this->mm->getMenuKategori();
-        $data['produkBaru'] = $this->hm->getAllProdukByBaru();
-        $this->load->view('Templates/header', $data);
-        $this->load->view('Templates/topbar', $data);
-        $this->load->view('Home/index', $data);
-        $this->load->view('Templates/footer');
-     }
+
+            $data['judul'] = "Home | Borma Shop";
+            $data['menuKategori'] = $this->mm->getMenuKategori();
+            $data['produkBaru'] = $this->hm->getAllProdukByBaru();
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar', $data);
+            $this->load->view('Home/index', $data);
+            $this->load->view('Templates/footer');
+        }
     }
 
     public function menuElektronik()
@@ -50,6 +49,7 @@ class Home extends CI_Controller
         $idP = $data['produk']['id_user'];
         $data['penjual'] = $this->hm->getPenjualById($idP);
         $data['kategori'] = $this->mm->getMenuKategori();
+        $data['pembeli'] = $this->pm->getPembeliBySession();
         $this->load->view('Templates/header', $data);
         $this->load->view('Templates/topbar', $data);
         $this->load->view('Home/DetailProduk', $data);
@@ -63,6 +63,7 @@ class Home extends CI_Controller
         $data['allProduk'] = $this->hm->getAllProduk();
         $data['produkKategori'] = $this->hm->getProdukByKategori($kategori);
         $data['kategori'] = $this->mm->getMenuKategori();
+        $data['pembeli'] = $this->pm->getPembeliBySession();
         $this->load->view('Templates/header', $data);
         $this->load->view('Templates/topbar', $data);
         $this->load->view('Home/GridProduk', $data);
@@ -75,7 +76,7 @@ class Home extends CI_Controller
         $data['kategori'] = $this->mm->getMenuKategori();
         $data['menuKategori'] = $this->mm->getMenuKategori();
         $data['allProduk'] = $this->hm->getAllProduk();
-
+        $data['pembeli'] = $this->pm->getPembeliBySession();
         $data['produkKategori'] = $this->hm->getProdukBySearch();
         $this->load->view('Templates/header', $data);
         $this->load->view('Templates/topbar', $data);

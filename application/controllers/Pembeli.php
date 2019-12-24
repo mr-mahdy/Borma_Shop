@@ -13,19 +13,17 @@ class Pembeli extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('role_id') == 2) {
-            $data['judul'] = "Profil | Pembeli";
-            $data['pembeli'] = $this->pm->getPembeliBySession();
-            $data['pembeli'] = $this->pm->getIdPembeli();
-            $data['menuKategori'] = $this->mm->getMenuKategori();
-            $this->load->view('Templates/header', $data);
-            $this->load->view('Templates/topbar', $data);
-            $this->load->view('Pembeli/index', $data);
-            $this->load->view('Templates/footer');
-        } else {
+        } else {   // $data['judul'] = "Profil | Pembeli";
+            // $data['pembeli'] = $this->pm->getPembeliBySession();
+            // $data['pembeli'] = $this->pm->getIdPembeli();
+            // $data['menuKategori'] = $this->mm->getMenuKategori();
+            // $this->load->view('Templates/header', $data);
+            // $this->load->view('Templates/topbar', $data);
+            // $this->load->view('Pembeli/index', $data);
+            // $this->load->view('Templates/footer');
             return redirect('Auth/index');
         }
-        
-    } 
+    }
 
     public function logout()
     {
@@ -36,10 +34,10 @@ class Pembeli extends CI_Controller
     public function editProfil()
     {
         if ($this->session->userdata('role_id') == 2) {
-            $data['pembeli'] = $this->pm->getPembeliBySession();
 
             $data['judul'] = "Profil | Pembeli";
             $data['menuKategori'] = $this->mm->getMenuKategori();
+            $data['pembeli'] = $this->pm->getProfilPembeli($this->session->userdata('email'));
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
             $this->load->view('Pembeli/index', $data);
@@ -65,10 +63,10 @@ class Pembeli extends CI_Controller
                 $this->editProfil();
             } else {
                 if ($this->_validationPassword($password)) {
-                    $id = $this->pm->getIdPembeli();
+                    $id = $this->pm->getIdPembeli($this->session->userdata('email'));
                     $this->pm->updateProfil($id);
                     $this->session->set_flashdata('pesan', 'Data Profil Berhasil Diubah');
-                    return redirect('Pembeli/index');
+                    return redirect('Pembeli/editProfil');
                 } else {
                     $this->session->set_flashdata('pesan', 'Password yang anda masukan salah');
                     $this->editProfil();
@@ -81,10 +79,9 @@ class Pembeli extends CI_Controller
 
     private function _validationPassword($password)
     {
-        $user = $this->pm->getPenjualBySession();
+        $user = $this->pm->getPembeliBySession();
         if (password_verify($password, $user['password'])) {
-            return $user['role_id'] == 1;
+            return $user['role_id'] == 2;
         }
     }
 }
-
