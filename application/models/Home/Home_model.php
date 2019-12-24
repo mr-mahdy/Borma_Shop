@@ -25,6 +25,11 @@ class Home_model extends CI_Model
     {
         return $this->db->get_where('user', ['id' => $id])->row_array();
     }
+    public function getPembeliById($id)
+    {
+        return $this->db->get_where('user', ['id' => $id])->row_array();
+    }
+
 
     public function registration()
     {

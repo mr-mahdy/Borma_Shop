@@ -7,11 +7,25 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('Menu/Menu_model', 'mm');
         $this->load->model('Home/Home_model', 'hm');
+        $this->load->model('Pembeli/PembeliModel', 'pm');
+        $this->load->model('Menu/Menu_model', 'mm');
         $this->load->library('form_validation');
-    }
+    
+ }
 
     public function index()
     {
+        if ($this->session->userdata('role_id') == 2) {
+            $data['judul'] = "Home | Borma Shop";
+            $data['pembeli'] = $this->pm->getPembeliBySession();
+            $data['menuKategori'] = $this->mm->getMenuKategori();
+            $data['produkBaru'] = $this->hm->getAllProdukByBaru();
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar', $data);
+            $this->load->view('Home/index', $data);
+            $this->load->view('Templates/footer');
+        } else {
+        
         $data['judul'] = "Home | Borma Shop";
         $data['menuKategori'] = $this->mm->getMenuKategori();
         $data['produkBaru'] = $this->hm->getAllProdukByBaru();
@@ -19,6 +33,7 @@ class Home extends CI_Controller
         $this->load->view('Templates/topbar', $data);
         $this->load->view('Home/index', $data);
         $this->load->view('Templates/footer');
+     }
     }
 
     public function menuElektronik()
