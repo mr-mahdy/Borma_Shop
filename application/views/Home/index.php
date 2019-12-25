@@ -7,9 +7,8 @@
 				<div class="col-lg-12">
 					<div class="slider__content">
 						<div class="contentbox">
-							<h2>Tempat <span>Jual</span> dan</h2>
-							<h2><span>Beli </span> Produk</h2>
-							<h2><span>Terbaik</span></h2>
+							<h2>Belanja <span>Murah</span></h2>
+							<h2><span>Setiap </span> Saat</h2>
 							<a class="shopbtn" href="#">Beli Sekarang</a>
 						</div>
 					</div>
@@ -25,9 +24,8 @@
 				<div class="col-lg-12">
 					<div class="slider__content">
 						<div class="contentbox">
-							<h2>Tempat <span>Jual</span> dan</h2>
-							<h2><span>Beli </span> Produk</h2>
-							<h2><span>Terbaik</span></h2>
+							<h2>Belanja <span>Murah</span></h2>
+							<h2><span>Setiap </span> Saat</h2>
 							<a class="shopbtn" href="#">Beli Sekarang</a>
 						</div>
 					</div>
