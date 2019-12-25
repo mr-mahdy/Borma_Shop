@@ -6,6 +6,7 @@ class Penjual extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Penjual/PenjualModel', 'pm');
+        $this->load->model('Pembayaran/PembayaranModel', 'pbm');
         $this->load->model('Menu/Menu_model', 'mm');
         $this->load->library('form_validation');
     }
@@ -14,8 +15,10 @@ class Penjual extends CI_Controller
     {
         if ($this->session->userdata('role_id') == 1) {
             $data['judul'] = "Dashboard | Penjual";
-            $data['menu'] = $this->mm->getMenuPenjual();
             $data['penjual'] = $this->pm->getPenjualBySession();
+            $data['produk'] = $this->pm->getAllProduk($data['penjual']['id']);
+            $data['jmlInvBerhasil'] = $this->pbm->getJumlahInvoiceBerhasil($data['penjual']['id']);
+            $data['totalPenjualan'] = $this->pbm->getTotalIPenjualan($data['penjual']['id']);
             $this->load->view('Templates/header', $data);
             $this->load->view('Templates/topbar', $data);
             $this->load->view('Penjual/index', $data);
@@ -90,7 +93,6 @@ class Penjual extends CI_Controller
     {
         if ($this->session->userdata('role_id') == 1) {
             $data['judul'] = "Pengelolaan Produk | Penjual";
-            $data['menu'] = $this->mm->getMenuPenjual();
             $id = $this->pm->getIdPenjual();
             $data['allProduk'] = $this->pm->getAllProduk($id);
             $this->load->view('Templates/header', $data);
@@ -210,6 +212,37 @@ class Penjual extends CI_Controller
         $user = $this->pm->getPenjualBySession();
         if (password_verify($password, $user['password'])) {
             return $user['role_id'] == 1;
+        }
+    }
+
+    public function invoice()
+    {
+        if ($this->session->userdata('role_id') == 1) {
+            $data['judul'] = "Pengelolaan Pemesanan | Penjual";
+            $id = $this->pm->getIdPenjual();
+
+            $data['invoice'] = $this->pbm->getInvoice($id);
+            $this->load->view('Templates/header', $data);
+            $this->load->view('Templates/topbar', $data);
+            $this->load->view('Penjual/invoice', $data);
+            $this->load->view('Templates/footer');
+        } else {
+            return redirect('Auth/index');
+        }
+    }
+
+    public function kirimProduk($id)
+    {
+        if ($this->session->userdata('role_id') == 1) {
+            if ($this->pm->updateStatus($id) > 0) {
+                $this->session->set_flashdata('pesan', 'Pesanan Berhasil Dikirim');
+                redirect('penjual/invoice');
+            } else {
+                $this->session->set_flashdata('pesan1', 'Pesanan Gagal Dikirim');
+                redirect('penjual/invoice');
+            }
+        } else {
+            return redirect('Auth/index');
         }
     }
 }

@@ -51,6 +51,7 @@ class Auth extends CI_Controller
                         redirect('Penjual/index');
                     } else if ($data['role_id'] == 2) {
                         $this->session->set_userdata($data);
+                        $this->cart->destroy();
                         redirect('Home/index');
                     }
                 } else {

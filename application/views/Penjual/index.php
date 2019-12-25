@@ -3,12 +3,12 @@
     <h5 style="margin-top:100px; margin-left:30px">Pusat Penjual ( <?= $penjual['name']; ?> )</h5>
     <br>
     <?php if ($this->session->flashdata('pesanInsertProduk')) : ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong><?= $this->session->flashdata('pesanInsertProduk'); ?></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong><?= $this->session->flashdata('pesanInsertProduk'); ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     <?php endif; ?>
     <!-- Akhir Menu Bar -->
 
@@ -34,16 +34,16 @@
                 <h6 class="white-text text-center" style="margin: 0;background:rgb(95, 220, 45);padding:5px">Penjualan</h6>
                 <div class="row text-center">
                     <div class="col 12 m3 s6">
-                        <h6 class="mt--20">Produk</h6>
-                        <h5>10</h5><br>
+                        <h6 class="mt--20">Jumlah Produk</h6>
+                        <h5><?= count($produk) ?></h5><br>
                     </div>
                     <div class="col 12 m3 s6">
                         <h6 class="mt--20">Jumlah Penjualan</h6>
-                        <h5>20</h5><br>
+                        <h5><?= $jmlInvBerhasil; ?></h5><br>
                     </div>
                     <div class="col 12 m3 s6">
                         <h6 class="mt--20">Total Penjualan</h6>
-                        <h5>Rp. 500.000</h5><br>
+                        <h5>Rp. <?= number_format($totalPenjualan, 0, ',', '.'); ?></h5><br>
                     </div>
                 </div>
             </div>
@@ -53,6 +53,7 @@
                 <ul>
                     <li>>><a href="<?= base_url('Penjual/createProduk'); ?>"> Buat Produk</a></li>
                     <li>>><a href="<?= base_url('Penjual/daftarProduk'); ?>"> Daftar Produk</a></li>
+                    <li>>><a href="<?= base_url('Penjual/invoice'); ?>"> Daftar Pemesanan</a></li>
                 </ul>
             </div>
         </div>

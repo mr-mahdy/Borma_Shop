@@ -13,6 +13,11 @@ class PembeliModel extends CI_Model
         return $check_user->num_rows() > 0;
     }
 
+    public function getProdukById($id)
+    {
+        return $this->db->get_where('daftar_produk', ['id' => $id])->row_array();
+    }
+
     public function cekVerifikasiPembeli($user, $pass)
     {
         $data = [
@@ -31,7 +36,7 @@ class PembeliModel extends CI_Model
         $telepon = $this->input->post('telepon');
         $alamat = $this->input->post('alamat');
 
-        $query = "UPDATE user, pembeli SET name = '$name', email = '$email', jenis_kelamin = '$jk', tgl_lhr = '$tgl_lhr', telepon = '$telepon', alamat = '$alamat'  WHERE pembeli . id = user . id_pembeli AND user . id = $id";
+        $query = "UPDATE user, pembeli SET name = '$name', email = '$email', jenis_kelamin = '$jk', tgl_lhr = '$tgl_lhr', telepon = '$telepon', alamat = '$alamat'  WHERE pembeli . id = user . id_pembeli AND user . id_pembeli = $id";
         $this->db->query($query);
     }
 
@@ -45,12 +50,11 @@ class PembeliModel extends CI_Model
 
     public function getIdPembeli($email)
     {
-        $query = "SELECT id FROM user 
+        $query = "SELECT id_pembeli FROM user 
           WHERE email = '$email'";
 
-        return $this->db->query($query)->row_array()['id'];
+        return $this->db->query($query)->row_array()['id_pembeli'];
     }
-
 
     public function getPembeliBySession()
     {

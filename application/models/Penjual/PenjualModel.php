@@ -201,4 +201,10 @@ class PenjualModel extends CI_Model
 
         $this->db->update('user', $data, ['id' => $id]);
     }
+
+    public function updateStatus($id)
+    {
+        $this->db->update('invoice', ['status' => 'Kirim'], ['id' => $id]);
+        return $this->db->affected_rows();
+    }
 }

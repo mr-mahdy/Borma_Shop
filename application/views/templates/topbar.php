@@ -53,76 +53,43 @@
 						<li class="wishlist"><a href="#"></a></li>
 
 						<!-- Keranjang -->
-						<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+						<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun"><?= $this->cart->total_items() ?></span></a>
 							<!-- Isi dari Keranjangnya -->
 							<div class="block-minicart minicart__active">
 								<div class="minicart-content-wrapper">
 									<div class="micart__close">
 									</div>
 									<div class="items-total d-flex justify-content-between">
-										<span>3 Produk</span>
+										<span><?= $this->cart->total_items() ?> Produk</span>
 										<span>Subtotal</span>
 									</div>
 									<div class="total_amount text-right">
-										<span>$66.00</span>
+
+										<span>Rp. <?= $this->cart->format_number($this->cart->total()); ?></span>
 									</div>
 									<div class="mini_action checkout">
-										<a class="checkout__btn" href="cart.html">Lanjut Pembayaran</a>
+										<a class="checkout__btn" href="<?= base_url('Pembayaran/index') ?>">Lanjut Pembayaran</a>
 									</div>
 									<div class="single__items">
 										<div class="miniproduct">
-											<div class="item01 d-flex">
-												<div class="thumb">
-													<a href="product-details.html"><img src="<?= base_url('assets/images/product/sm-img/1.jpg') ?>" alt="product images"></a>
-												</div>
-												<div class="content">
-													<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-													<span class="prize">$30.00</span>
-													<div class="product_prize d-flex justify-content-between">
-														<span class="qun">Qty: 01</span>
-														<ul class="d-flex justify-content-end">
-															<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-															<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-														</ul>
+											<?php foreach ($this->cart->contents() as $item) : ?>
+												<div class="item01 d-flex">
+													<div class="content">
+														<h6><?= $item['name']; ?></h6>
+														<span class="prize">Rp. <?= number_format($item['subtotal'], 0, ',', '.') ?></span>
+														<div class="product_prize d-flex justify-content-between">
+															<span class="qun">Qty: <?= $item['qty']; ?></span>
+															<ul class="d-flex justify-content-end">
+																<li><a href="<?= base_url('Keranjang/removeKeranjang/') . $item['rowid'] ?>"><i class="zmdi zmdi-delete"></i></a></li>
+															</ul>
+														</div>
 													</div>
 												</div>
-											</div>
-											<div class="item01 d-flex mt--20">
-												<div class="thumb">
-													<a href="product-details.html"><img src="<?= base_url('assets/images/product/sm-img/3.jpg') ?>" alt="product images"></a>
-												</div>
-												<div class="content">
-													<h6><a href="product-details.html">Impulse Duffle</a></h6>
-													<span class="prize">$40.00</span>
-													<div class="product_prize d-flex justify-content-between">
-														<span class="qun">Qty: 03</span>
-														<ul class="d-flex justify-content-end">
-															<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-															<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="item01 d-flex mt--20">
-												<div class="thumb">
-													<a href="product-details.html"><img src="<?= base_url('assets/images/product/sm-img/2.jpg') ?>" alt="product images"></a>
-												</div>
-												<div class="content">
-													<h6><a href="product-details.html">Compete Track Tote</a></h6>
-													<span class="prize">$40.00</span>
-													<div class="product_prize d-flex justify-content-between">
-														<span class="qun">Qty: 03</span>
-														<ul class="d-flex justify-content-end">
-															<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-															<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
+											<?php endforeach; ?>
 										</div>
 									</div>
 									<div class="mini_action cart">
-										<a class="cart__btn" href="cart.html">Tampil & Edit Keranjang</a>
+										<a class="cart__btn" href="<?= base_url('keranjang/index') ?>">Tampil & Edit Keranjang</a>
 									</div>
 								</div>
 							</div>
@@ -157,6 +124,15 @@
 										<div class="switcher-options">
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
+													<?php if (isset($invoice)) : ?>
+														<?php $pesanan = 0;
+														foreach ($invoice as $inv) : ?>
+															<?php if ($inv['status'] == 'Kirim') : ?>
+																<?php $pesanan++; ?>
+															<?php endif; ?>
+														<?php endforeach; ?>
+														<span class="notif text-success">Notif : <?= $pesanan; ?> Pesanan Sudah Dikirim</span>
+													<?php endif; ?>
 													<span><a href="#">Profil Pembeli</a></span>
 
 													<ul>
@@ -165,6 +141,7 @@
 														<li>Tanggal Dibuat : <?= $pembeli['date_created']; ?></li>
 													</ul>
 													<span><a href="<?= base_url('Pembeli/editProfil'); ?>">Edit Profil</a></span>
+
 													<span><a href="<?= base_url('Pembeli/logout'); ?>">Logout</a></span>
 												</div>
 											</div>
@@ -193,51 +170,6 @@
 				</ul>
 			</div>
 		</div>
-
-		<!-- Jika menu dibuka di Mobile -->
-		<!-- <div class="row d-none">
-			<div class="col-lg-12 d-none">
-				<nav class="mobilemenu__nav">
-					<ul class="meninmenu">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="#">Pages</a>
-							<ul>
-								<li><a href="about.html">About Page</a></li>
-								<li><a href="portfolio.html">Portfolio</a>
-									<ul>
-										<li><a href="portfolio.html">Portfolio</a></li>
-										<li><a href="portfolio-details.html">Portfolio Details</a></li>
-									</ul>
-								</li>
-								<li><a href="my-account.html">My Account</a></li>
-								<li><a href="cart.html">Cart Page</a></li>
-								<li><a href="checkout.html">Checkout Page</a></li>
-								<li><a href="wishlist.html">Wishlist Page</a></li>
-								<li><a href="error404.html">404 Page</a></li>
-								<li><a href="faq.html">Faq Page</a></li>
-								<li><a href="team.html">Team Page</a></li>
-							</ul>
-						</li>
-						<li><a href="shop-grid.html">Shop</a>
-							<ul>
-								<li><a href="shop-grid.html">Shop Grid</a></li>
-								<li><a href="single-product.html">Single Product</a></li>
-							</ul>
-						</li>
-						<li><a href="blog.html">Blog</a>
-							<ul>
-								<li><a href="blog.html">Blog Page</a></li>
-								<li><a href="blog-details.html">Blog Details</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<div class="mobile-menu d-block d-lg-none">
-		</div> -->
-		<!-- Jika menu dibuka di Mobile -->
 	</div>
 </header>
 <!-- //Header -->

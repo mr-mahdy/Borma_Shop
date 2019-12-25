@@ -10,25 +10,11 @@ class Pembeli extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function index()
-    {
-        if ($this->session->userdata('role_id') == 2) {
-        } else {   // $data['judul'] = "Profil | Pembeli";
-            // $data['pembeli'] = $this->pm->getPembeliBySession();
-            // $data['pembeli'] = $this->pm->getIdPembeli();
-            // $data['menuKategori'] = $this->mm->getMenuKategori();
-            // $this->load->view('Templates/header', $data);
-            // $this->load->view('Templates/topbar', $data);
-            // $this->load->view('Pembeli/index', $data);
-            // $this->load->view('Templates/footer');
-            return redirect('Auth/index');
-        }
-    }
-
     public function logout()
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
+        $this->cart->destroy();
         return redirect('Auth/index');
     }
     public function editProfil()
