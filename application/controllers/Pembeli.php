@@ -15,6 +15,9 @@ class Pembeli extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
         $this->cart->destroy();
+        // remove cookie
+        setcookie("email", "", time() - 3600);
+        setcookie("role_id", "", time() - 3600);
         return redirect('Auth/index');
     }
     public function editProfil()

@@ -36,6 +36,7 @@ class Auth extends CI_Controller
     {
         $email = $this->input->post('emaillogin');
         $password = $this->input->post('passwordlogin');
+        $rememberme = $this->input->post('rememberme');
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
@@ -46,8 +47,14 @@ class Auth extends CI_Controller
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
+
+
                     if ($data['role_id'] == 1) {
                         $this->session->set_userdata($data);
+                        if($remember !=NULL) {
+                            setcookie('email', $email, time()+60*60*7);
+                            setcookie('role_id', $role_id, time()+60*60*7);
+
                         redirect('Penjual/index');
                     } else if ($data['role_id'] == 2) {
                         $this->session->set_userdata($data);
@@ -67,6 +74,8 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
+
+        }
 
 
     private function _sendEmail($token, $type)

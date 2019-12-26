@@ -32,6 +32,9 @@ class Penjual extends CI_Controller
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
+        // remove cookie
+        setcookie("email", "", time() - 3600);
+        setcookie("role_id", "", time() - 3600);
         return redirect('Auth/index');
     }
 
